@@ -1,0 +1,8 @@
+[
+  {"Name": "SampleShop", "Title": "SampleShop (DEMO DATA)", "Domain": "sampleshop.example", "BreachDate": "2021-04-01", "PwnCount": 1000000,
+   "DataClasses": ["Email addresses", "Passwords", "Phone numbers", "Physical addresses"], "IsVerified": true, "IsSensitive": false,
+   "Description": "Fictional sample record used for UI development. Not a real breach."},
+  {"Name": "SampleWallet", "Title": "SampleWallet (DEMO DATA)", "Domain": "samplewallet.co.in", "BreachDate": "2024-09-15", "PwnCount": 250000,
+   "DataClasses": ["Email addresses", "Names", "Phone numbers", "Partial credit card data"], "IsVerified": true, "IsSensitive": false,
+   "Description": "Fictional sample record used for UI development. Not a real breach."}
+]
