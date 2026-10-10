@@ -1,0 +1,14 @@
+{
+  "_comment": "Curated, best-effort list of India-related services, matched against the Domain field HIBP returns for each breach. Verify entries against https://haveibeenpwned.com/PwnedWebsites before relying on them; extend freely.",
+  "domains": {
+    "bigbasket.com": "BigBasket",
+    "justdial.com": "Justdial",
+    "mobikwik.com": "MobiKwik",
+    "dominos.co.in": "Domino's India",
+    "zomato.com": "Zomato",
+    "unacademy.com": "Unacademy",
+    "shopclues.com": "ShopClues",
+    "boat-lifestyle.com": "boAt"
+  },
+  "tld_suffixes": [".in", ".co.in", ".gov.in", ".ac.in", ".org.in", ".net.in"]
+}
