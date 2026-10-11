@@ -55,7 +55,13 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.get("/api/health")
     async def health():
-        return {"status": "ok", "breach_lookup": "demo" if s.hibp_demo else ("configured" if s.hibp_api_key else "not_configured")}
+        if s.hibp_demo:
+            lookup = "demo"
+        elif s.provider == "hibp":
+            lookup = "hibp" if s.hibp_api_key else "not_configured"
+        else:
+            lookup = "xposedornot"
+        return {"status": "ok", "breach_lookup": lookup}
 
     @app.get("/api/stats")
     async def stats():

@@ -9,7 +9,7 @@ import httpx
 
 from app.config import Settings
 from app.models import (Breach, BreachSection, DomainSection, EmailCheck, EmailSecuritySection, Report)
-from app.services import crtsh, dns_checks, hibp
+from app.services import crtsh, dns_checks, hibp, xposedornot
 from app.services.indian_context import attacker_view, is_india_related
 from app.services.mitre import map_techniques
 from app.services.remediation import build_remediation
@@ -31,23 +31,26 @@ def _to_breach(raw: dict) -> Breach:
         attacker_view=attacker_view(classes))
 
 
-def _breach_section(raws: list[dict], status: str, message: str | None = None) -> BreachSection:
+def _breach_section(raws: list[dict], status: str, message: str | None = None, source: str | None = None) -> BreachSection:
     breaches = sorted((_to_breach(r) for r in raws), key=lambda b: b.breach_date or "", reverse=True)
     # India-related breaches first, then newest
     breaches.sort(key=lambda b: not b.is_india_related)
     classes = sorted({c for b in breaches for c in b.data_classes})
-    return BreachSection(status=status, message=message, count=len(breaches), breaches=breaches, data_classes=classes)  # type: ignore[arg-type]
+    return BreachSection(status=status, message=message, source=source, count=len(breaches), breaches=breaches, data_classes=classes)  # type: ignore[arg-type]
 
 
 async def _breaches(email: str, client: httpx.AsyncClient, s: Settings) -> BreachSection:
     if s.hibp_demo:
         return _breach_section(hibp.load_demo_breaches(), "demo",
-                               "DEMO MODE: these are fictional sample records, not real results for this email.")
-    if not s.hibp_api_key:
-        return BreachSection(status="unavailable", message="Breach lookup is not configured on this server (no HIBP API key).")
+                               "DEMO MODE: these are fictional sample records, not real results for this email.",
+                               source="Demo data")
     try:
-        return _breach_section(await hibp.fetch_breaches(email, client, s.hibp_api_key), "ok")
-    except hibp.HibpError as exc:
+        if s.provider == "hibp":
+            if not s.hibp_api_key:
+                return BreachSection(status="unavailable", message="Breach lookup is not configured on this server (no HIBP API key).")
+            return _breach_section(await hibp.fetch_breaches(email, client, s.hibp_api_key), "ok", source="HaveIBeenPwned")
+        return _breach_section(await xposedornot.fetch_breaches(email, client), "ok", source="XposedOrNot")
+    except hibp.HibpError as exc:  # XonError subclasses HibpError
         return BreachSection(status="unavailable", message=str(exc))
 
 

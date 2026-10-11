@@ -15,9 +15,11 @@ export async function scan(email, domain) {
   if (!res.ok) {
     const msg =
       body.error ||
-      (Array.isArray(body.detail) ? "Please check the email and domain you entered." : body.detail) ||
-      "Something went wrong. Please try again.";
-    throw new Error(msg);
+      (Array.isArray(body.detail) ? "Check the email and domain you entered." : body.detail) ||
+      "Something went wrong. Try again in a moment.";
+    const err = new Error(msg);
+    if (res.status === 429) err.retryAfter = parseInt(res.headers.get("Retry-After") || "30", 10);
+    throw err;
   }
   return body;
 }

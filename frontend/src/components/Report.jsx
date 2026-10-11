@@ -6,26 +6,27 @@ import MitrePanel from "./MitrePanel.jsx";
 
 export default function Report({ report }) {
   const { breaches, risk } = report;
+  const headline =
+    breaches.status === "unavailable" ? "The breach lookup did not complete"
+    : breaches.count === 0 ? "No known breaches found"
+    : `Your email appears in ${breaches.count} known ${breaches.count === 1 ? "breach" : "breaches"}`;
+
   return (
     <div className="report">
-      <section className="card">
-        <div className="summary">
-          <RiskGauge risk={risk} />
-          <div>
-            <h2>
-              {breaches.status === "unavailable"
-                ? "Breach lookup unavailable"
-                : breaches.count === 0
-                ? "No known breaches found"
-                : `Found in ${breaches.count} known breach${breaches.count === 1 ? "" : "es"}`}
-            </h2>
-            {risk.partial && <p className="alert alert-warn">This score is partial because the breach lookup did not complete.</p>}
-            {breaches.message && <p className={`alert ${breaches.status === "demo" ? "alert-demo" : "alert-warn"}`}>{breaches.message}</p>}
-            <ul className="factors">
-              {risk.factors.map((f) => (<li key={f.label}><span>{f.label}</span><b>+{f.points}</b></li>))}
-              {risk.factors.length === 0 && <li><span>No risk factors detected</span><b>0</b></li>}
-            </ul>
-          </div>
+      <section className="summary">
+        <RiskGauge risk={risk} />
+        <div className="summary-body">
+          <h2>{headline}</h2>
+          {breaches.status === "demo" && (
+            <p className="notice notice-demo">Demo data. These fictional sample breaches appear for every email while the server runs in demo mode.</p>
+          )}
+          {breaches.status === "unavailable" && (
+            <p className="notice notice-warn">{breaches.message} The score below is partial.</p>
+          )}
+          <ul className="factors">
+            {risk.factors.map((f) => (<li key={f.label}><span>{f.label}</span><b>+{f.points}</b></li>))}
+            {risk.factors.length === 0 && <li><span>No risk factors found</span><b>0</b></li>}
+          </ul>
         </div>
       </section>
 
@@ -35,7 +36,7 @@ export default function Report({ report }) {
         <DomainPanel exposure={report.domain_exposure} mail={report.email_security} />
       )}
       <MitrePanel techniques={report.mitre} />
-      <p className="muted small">Generated {new Date(report.generated_at).toLocaleString()} · {report.storage_note}</p>
+      <p className="fine">Report generated {new Date(report.generated_at).toLocaleString("en-IN")}.{breaches.source ? ` Breach data: ${breaches.source}.` : ""} {report.storage_note}</p>
     </div>
   );
 }

@@ -27,7 +27,7 @@ def test_demo_scan_end_to_end():
 
 
 def test_unconfigured_hibp_degrades_gracefully():
-    with TestClient(create_app(settings(hibp_demo=False))) as c:
+    with TestClient(create_app(settings(hibp_demo=False, breach_provider="hibp"))) as c:
         body = c.post("/api/scan", json={"email": "a@example.com"}).json()
         assert body["breaches"]["status"] == "unavailable"
         assert body["risk"]["partial"] is True

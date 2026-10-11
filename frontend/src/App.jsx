@@ -4,13 +4,29 @@ import ScanForm from "./components/ScanForm.jsx";
 import Report from "./components/Report.jsx";
 import Transparency from "./components/Transparency.jsx";
 
+function Mark() {
+  return (
+    <svg className="mark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" rx="7" fill="currentColor" />
+      <path d="M16 6.5l8 3v6.2c0 4.8-3.3 8.6-8 10.3-4.7-1.7-8-5.5-8-10.3V9.5z" fill="none" stroke="var(--on-brand)" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M12.5 16l2.5 2.5 4.5-5" fill="none" stroke="var(--gold)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function App() {
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [stats, setStats] = useState(null);
+  const [cooldown, setCooldown] = useState(0);
 
   useEffect(() => { getStats().then(setStats); }, []);
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const t = setTimeout(() => setCooldown((c) => c - 1), 1000);
+    return () => clearTimeout(t);
+  }, [cooldown]);
 
   async function onScan(email, domain) {
     setLoading(true); setError(null); setReport(null);
@@ -19,6 +35,7 @@ export default function App() {
       getStats().then(setStats);
     } catch (e) {
       setError(e.message);
+      if (e.retryAfter) setCooldown(e.retryAfter);
     } finally {
       setLoading(false);
     }
@@ -28,27 +45,25 @@ export default function App() {
     <>
       <header className="topbar">
         <div className="wrap topbar-in">
-          <span className="brand"><span className="logo" aria-hidden="true" />ExposureCheck <b>India</b></span>
-          <span className="tag">Free · No signup · Nothing stored</span>
+          <span className="brand"><Mark />ExposureCheck India</span>
+          <span className="tag">Free. No signup. Nothing stored.</span>
         </div>
       </header>
       <main className="wrap">
         {!report && (
           <section className="hero">
-            <h1>Has your email been exposed in a data breach?</h1>
-            <p>Get a plain-language report on what leaked, what an attacker can do with it, and exactly what to do next in India.</p>
+            <h1>Find out what the internet already knows about your email.</h1>
+            <p>We check known data breaches, explain what an attacker could do with what leaked, and give you next steps that work in India.</p>
           </section>
         )}
-        <ScanForm onScan={onScan} loading={loading} compact={!!report} />
-        {error && <div className="alert alert-error" role="alert">{error}</div>}
-        {loading && <p className="muted center" aria-live="polite">Scanning public sources… this can take up to 20 seconds.</p>}
+        <ScanForm onScan={onScan} loading={loading} cooldown={cooldown} compact={!!report} />
+        {error && <div className="notice notice-error" role="alert">{error}</div>}
+        {loading && <p className="status" aria-live="polite">Checking public sources. This can take up to 20 seconds.</p>}
         {report && <Report report={report} />}
         <Transparency stats={stats} />
       </main>
       <footer className="footer">
-        <div className="wrap">
-          ExposureCheck India is an open-source educational tool. It only uses public data sources and gives guidance, not a guarantee of safety.
-        </div>
+        <div className="wrap">An open-source learning project built on public data sources. It gives guidance, not a guarantee of safety.</div>
       </footer>
     </>
   );

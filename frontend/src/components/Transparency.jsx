@@ -1,16 +1,17 @@
+import Section from "./Section.jsx";
+
 export default function Transparency({ stats }) {
   return (
-    <section className="card transparency">
-      <h2>How this works, and what we store</h2>
-      <ul>
-        <li><b>Breaches:</b> your email is checked against the HaveIBeenPwned API, with India-related breaches highlighted.</li>
-        <li><b>Domain (optional):</b> public certificate transparency logs (crt.sh) and DNS lookups for SPF, DKIM and DMARC.</li>
-        <li><b>Stored:</b> only anonymous daily totals (number of scans, breaches found). Your email and domain are never saved or logged.</li>
-        <li><b>No signup, no upsell, no email capture.</b> The source code is open so you can verify all of this.</li>
-      </ul>
+    <Section title="How this works, and what we store">
+      <dl className="how">
+        <dt>Breaches</dt><dd>Your email is checked against a public breach database (HaveIBeenPwned or XposedOrNot; each report names its source). India-related breaches are listed first.</dd>
+        <dt>Your domain</dt><dd>Optional. Uses public certificate logs (crt.sh) and DNS lookups for SPF, DKIM and DMARC.</dd>
+        <dt>What we store</dt><dd>Only anonymous daily totals, such as the number of scans. Your email and domain are never saved or logged.</dd>
+        <dt>What we skip</dt><dd>No signup, no email capture, no upsell. The code is open so you can check all of this.</dd>
+      </dl>
       {stats && stats.total_scans > 0 && (
-        <p className="muted small">Scans run so far: <b>{stats.total_scans.toLocaleString("en-IN")}</b> · Breaches surfaced: <b>{stats.breaches_surfaced.toLocaleString("en-IN")}</b></p>
+        <p className="fine">{stats.total_scans.toLocaleString("en-IN")} {stats.total_scans === 1 ? "scan" : "scans"} run so far, surfacing {stats.breaches_surfaced.toLocaleString("en-IN")} {stats.breaches_surfaced === 1 ? "breach" : "breaches"}.</p>
       )}
-    </section>
+    </Section>
   );
 }

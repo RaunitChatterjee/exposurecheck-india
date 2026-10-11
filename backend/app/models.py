@@ -31,6 +31,7 @@ class Breach(BaseModel):
 class BreachSection(BaseModel):
     status: SectionStatus
     message: str | None = None
+    source: str | None = None
     count: int = 0
     breaches: list[Breach] = []
     data_classes: list[str] = []

@@ -30,6 +30,14 @@ class Settings:
     rate_per_minute: int
     rate_per_hour: int
     global_per_minute: int
+    breach_provider: str = "auto"
+
+    @property
+    def provider(self) -> str:
+        """Which breach database to use: explicit BREACH_PROVIDER, else HIBP if a key is set, else XposedOrNot."""
+        if self.breach_provider in ("hibp", "xposedornot"):
+            return self.breach_provider
+        return "hibp" if self.hibp_api_key else "xposedornot"
 
     @property
     def user_agent(self) -> str:
@@ -48,4 +56,5 @@ def get_settings() -> Settings:
         rate_per_minute=int(os.getenv("RATE_LIMIT_PER_MINUTE", "5")),
         rate_per_hour=int(os.getenv("RATE_LIMIT_PER_HOUR", "30")),
         global_per_minute=int(os.getenv("GLOBAL_RATE_LIMIT_PER_MINUTE", "8")),
+        breach_provider=os.getenv("BREACH_PROVIDER", "auto").strip().lower(),
     )
