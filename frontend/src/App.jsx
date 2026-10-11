@@ -3,6 +3,16 @@ import { getStats, scan } from "./api.js";
 import ScanForm from "./components/ScanForm.jsx";
 import Report from "./components/Report.jsx";
 import Transparency from "./components/Transparency.jsx";
+import PasswordCheck from "./components/tools/PasswordCheck.jsx";
+import ScamChecker from "./components/tools/ScamChecker.jsx";
+import HeaderAnalyzer from "./components/tools/HeaderAnalyzer.jsx";
+
+const TABS = [
+  { id: "breach", label: "Email breaches" },
+  { id: "password", label: "Password check" },
+  { id: "message", label: "Scam message check" },
+  { id: "headers", label: "Email header analysis" },
+];
 
 function Mark() {
   return (
@@ -20,6 +30,7 @@ export default function App() {
   const [error, setError] = useState(null);
   const [stats, setStats] = useState(null);
   const [cooldown, setCooldown] = useState(0);
+  const [tab, setTab] = useState("breach");
 
   useEffect(() => { getStats().then(setStats); }, []);
   useEffect(() => {
@@ -49,7 +60,19 @@ export default function App() {
           <span className="tag">Free. No signup. Nothing stored.</span>
         </div>
       </header>
+      <nav className="tabs" aria-label="Tools">
+        <div className="wrap tabs-in" role="tablist">
+          {TABS.map((t) => (
+            <button key={t.id} role="tab" aria-selected={tab === t.id} className={`tab ${tab === t.id ? "tab-on" : ""}`} onClick={() => setTab(t.id)}>{t.label}</button>
+          ))}
+        </div>
+      </nav>
       <main className="wrap">
+        {tab === "password" && <PasswordCheck />}
+        {tab === "message" && <ScamChecker />}
+        {tab === "headers" && <HeaderAnalyzer />}
+        {tab === "breach" && (
+          <>
         {!report && (
           <section className="hero">
             <h1>Find out what the internet already knows about your email.</h1>
@@ -61,6 +84,8 @@ export default function App() {
         {loading && <p className="status" aria-live="polite">Checking public sources. This can take up to 20 seconds.</p>}
         {report && <Report report={report} />}
         <Transparency stats={stats} />
+          </>
+        )}
       </main>
       <footer className="footer">
         <div className="wrap">An open-source learning project built on public data sources. It gives guidance, not a guarantee of safety.</div>
