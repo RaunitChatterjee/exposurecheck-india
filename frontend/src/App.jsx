@@ -6,11 +6,15 @@ import Transparency from "./components/Transparency.jsx";
 import PasswordCheck from "./components/tools/PasswordCheck.jsx";
 import ScamChecker from "./components/tools/ScamChecker.jsx";
 import HeaderAnalyzer from "./components/tools/HeaderAnalyzer.jsx";
+import UpiInspector from "./components/tools/UpiInspector.jsx";
+import IncidentWizard from "./components/tools/IncidentWizard.jsx";
 
 const TABS = [
+  { id: "sos", label: "I've been scammed", sos: true },
   { id: "breach", label: "Email breaches" },
   { id: "password", label: "Password check" },
   { id: "message", label: "Scam message check" },
+  { id: "upi", label: "UPI QR / link check" },
   { id: "headers", label: "Email header analysis" },
 ];
 
@@ -63,11 +67,13 @@ export default function App() {
       <nav className="tabs" aria-label="Tools">
         <div className="wrap tabs-in" role="tablist">
           {TABS.map((t) => (
-            <button key={t.id} role="tab" aria-selected={tab === t.id} className={`tab ${tab === t.id ? "tab-on" : ""}`} onClick={() => setTab(t.id)}>{t.label}</button>
+            <button key={t.id} role="tab" aria-selected={tab === t.id} className={`tab ${tab === t.id ? "tab-on" : ""} ${t.sos ? "tab-sos" : ""}`} onClick={() => setTab(t.id)}>{t.label}</button>
           ))}
         </div>
       </nav>
       <main className="wrap">
+        {tab === "sos" && <IncidentWizard />}
+        {tab === "upi" && <UpiInspector />}
         {tab === "password" && <PasswordCheck />}
         {tab === "message" && <ScamChecker />}
         {tab === "headers" && <HeaderAnalyzer />}
