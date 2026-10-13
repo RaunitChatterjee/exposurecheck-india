@@ -92,3 +92,37 @@ test("everyday Hinglish and Hindi chat is not flagged", () => {
   assert.equal(analyzeMessage("Kal shaam ko milte hain, jaldi aana yaar").signals.length, 0);
   assert.equal(analyzeMessage("मैं तुरंत आ रहा हूँ, चाय बना देना").level.id, "none");
 });
+
+// Scenario coverage for scams commonly reported in India.
+const SCENARIOS = [
+  ["digital arrest (English)", "This is CBI officer Sharma. A parcel in your name contains illegal drugs. You are under digital arrest. Do not disconnect this video call or tell anyone. Transfer Rs 85,000 to the RBI verification account to clear your name.", "high"],
+  ["digital arrest (Hinglish)", "Main Mumbai police se bol raha hu. Aapke naam par ek parcel mein drugs mile hain. Aap digital arrest mein hain, video call kaat mat dena aur kisi ko mat batana. Case khatam karne ke liye paise transfer karein.", "high"],
+  ["customs parcel", "Your parcel is held at customs due to unpaid duty of Rs 1,250. Pay now to release it: http://indiapost-customs-clear.top/pay or it will be returned.", "likely"],
+  ["customs parcel (Hinglish)", "Aapka parcel customs mein ruka hua hai. Clearance fee Rs 1250 abhi pay karein warna parcel wapas bhej diya jayega. Link: http://dhl-india-fee.xyz", "likely"],
+  ["electricity (English)", "Dear consumer, your electricity will be disconnected tonight at 9.30 PM because your previous month bill is not updated. Contact electricity officer immediately on 98XXXXXX10.", "likely"],
+  ["electricity (Hinglish)", "Priya upbhokta, aapki bijli aaj raat 9:30 baje kaat di jayegi kyunki pichle mahine ka bill update nahi hai. Turant bijli adhikari se sampark karein 98XXXXXX10.", "likely"],
+  ["expiring KYC", "Your SBI YONO account will be blocked today. Update your PAN and KYC now: http://sbi-yono-kyc.in.net/update", "likely"],
+  ["Telegram part-time job", "Hi, we have a part-time job for you. Earn Rs 3000-8000 daily by liking YouTube videos and giving Google Maps reviews. Work from home, no experience needed. Join our Telegram group: t.me/earnfast99 or message on WhatsApp.", "likely"],
+  ["like-and-review task with deposit", "Congratulations! You are selected. Complete simple tasks, like and review, get Rs 150 per task. First deposit Rs 1000 to unlock your task group and withdraw commission instantly.", "likely"],
+  ["task job (Hinglish)", "Ghar baithe paise kamaye! Video like karein aur review dein, roz 5000 tak kamaye. Telegram group join karein. Pehle registration fee Rs 500 bharni hogi.", "likely"],
+  ["investment tips group", "Join our VIP stock trading group, guaranteed 300% returns in 7 days. Sebi registered expert tips on WhatsApp.", "likely"],
+];
+const RANK = { none: 0, caution: 1, likely: 2, high: 3 };
+for (const [name, text, min] of SCENARIOS) {
+  test(`scenario: ${name} is rated at least '${min}'`, () => {
+    const r = analyzeMessage(text);
+    assert.ok(RANK[r.level.id] >= RANK[min], `${name}: got ${r.level.id} (${r.score})`);
+  });
+}
+
+for (const [name, text] of [
+  ["bank debit alert", "Rs 2,450 debited from A/c XX1234 on 12-Oct via UPI. If not you, call 1930 or your bank. Do not share OTP with anyone. -SBI"],
+  ["friend chat", "Hey, are we still meeting at 6 for dinner? I booked the table near the window."],
+  ["genuine OTP", "123456 is your OTP for login. Do not share this with anyone. Valid for 10 minutes. - Swiggy"],
+  ["order shipped", "Your Amazon order #407-123 has been shipped and will arrive tomorrow."],
+  ["interview invite", "We would like to invite you for an interview on Monday at 11 am. Please call 9876543210 to confirm."],
+]) {
+  test(`no strong signal for benign message: ${name}`, () => {
+    assert.equal(analyzeMessage(text).level.id, "none");
+  });
+}
