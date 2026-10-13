@@ -2,9 +2,13 @@ import Section from "./Section.jsx";
 
 const TAG = { 1: "Do now", 2: "Do soon", 3: "This week", 4: "Good to know" };
 
-export default function Remediation({ steps }) {
+export default function Remediation({ steps, onOpenPlanner }) {
   return (
     <Section title="What to do next" intro="In order of urgency. Start at the top.">
+      <div className="notice notice-error sos-inline">
+        <b>Lost money, or a payment you did not make?</b> Contact your bank straight away using the number on your card or in its official app, call <a href="tel:1930"><b>1930</b></a>, and report at <a href="https://cybercrime.gov.in" target="_blank" rel="noopener noreferrer">cybercrime.gov.in</a>.
+        {onOpenPlanner && <> <button type="button" className="textbtn textbtn-inline" onClick={onOpenPlanner}>Open the step-by-step planner</button></>}
+      </div>
       <ol className="steps">
         {steps.map((s, i) => (
           <li key={s.title}>

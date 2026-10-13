@@ -2,13 +2,14 @@ import Section from "./Section.jsx";
 
 export default function BreachList({ breaches }) {
   return (
-    <Section title="Breaches that include your email" intro="Open a breach to see what an attacker could do with the data in it.">
+    <Section title="Websites and services where your email leaked" intro="Look for services you have used. Open one to see what was exposed and what an attacker could do with it.">
       <ul className="breaches">
         {breaches.map((b) => (
           <li key={b.name}>
             <details>
               <summary>
                 <span className="b-title">{b.title}</span>
+                {b.domain && b.domain.toLowerCase() !== b.title.toLowerCase() && <span className="b-domain">{b.domain}</span>}
                 {b.is_india_related && <span className="chip chip-in">India-related</span>}
                 {b.is_sensitive && <span className="chip chip-bad">Sensitive</span>}
                 <span className="b-date">{b.breach_date || "Date unknown"}</span>
