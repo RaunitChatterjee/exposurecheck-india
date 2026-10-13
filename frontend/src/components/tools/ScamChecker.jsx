@@ -36,6 +36,7 @@ export default function ScamChecker() {
             <p>{result.signals.length === 0
               ? "We found no known scam patterns. That does not make it safe: if it asks for money, a link click or personal details, verify through an official channel first."
               : `${result.signals.length} warning ${result.signals.length === 1 ? "sign" : "signs"} found.`}</p>
+            <p className="fine">Language detected: {result.language}</p>
           </div>
           {result.signals.length > 0 && (
             <>
