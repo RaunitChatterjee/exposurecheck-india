@@ -3,6 +3,8 @@ import { getStats, scan } from "./api.js";
 import ScanForm from "./components/ScanForm.jsx";
 import Report from "./components/Report.jsx";
 import Transparency from "./components/Transparency.jsx";
+import Home from "./components/Home.jsx";
+import Loading from "./components/Loading.jsx";
 import PasswordCheck from "./components/tools/PasswordCheck.jsx";
 import ScamChecker from "./components/tools/ScamChecker.jsx";
 import HeaderAnalyzer from "./components/tools/HeaderAnalyzer.jsx";
@@ -10,6 +12,7 @@ import UpiInspector from "./components/tools/UpiInspector.jsx";
 import IncidentWizard from "./components/tools/IncidentWizard.jsx";
 
 const TABS = [
+  { id: "home", label: "Home" },
   { id: "sos", label: "I've been scammed", sos: true },
   { id: "breach", label: "Email breaches" },
   { id: "password", label: "Password check" },
@@ -34,7 +37,8 @@ export default function App() {
   const [error, setError] = useState(null);
   const [stats, setStats] = useState(null);
   const [cooldown, setCooldown] = useState(0);
-  const [tab, setTab] = useState("breach");
+  const [tab, setTab] = useState("home");
+  const [last, setLast] = useState(null);
 
   useEffect(() => { getStats().then(setStats); }, []);
   useEffect(() => {
@@ -44,6 +48,7 @@ export default function App() {
   }, [cooldown]);
 
   async function onScan(email, domain) {
+    setLast([email, domain]);
     setLoading(true); setError(null); setReport(null);
     try {
       setReport(await scan(email, domain));
@@ -60,7 +65,7 @@ export default function App() {
     <>
       <header className="topbar">
         <div className="wrap topbar-in">
-          <span className="brand"><Mark />ExposureCheck India</span>
+          <button type="button" className="brand brand-btn" onClick={() => setTab("home")} aria-label="ExposureCheck India home"><Mark />ExposureCheck India</button>
           <span className="tag">Free. No signup. Nothing stored.</span>
         </div>
       </header>
@@ -72,6 +77,7 @@ export default function App() {
         </div>
       </nav>
       <main className="wrap">
+        {tab === "home" && <Home onOpen={setTab} />}
         {tab === "sos" && <IncidentWizard />}
         {tab === "upi" && <UpiInspector />}
         {tab === "password" && <PasswordCheck />}
@@ -79,16 +85,14 @@ export default function App() {
         {tab === "headers" && <HeaderAnalyzer />}
         {tab === "breach" && (
           <>
-        {!report && (
-          <section className="hero">
-            <h1>Find out what the internet already knows about your email.</h1>
-            <p>We check known data breaches, explain what an attacker could do with what leaked, and give you next steps that work in India.</p>
-          </section>
-        )}
+        <section className="tool-head">
+          <h1>Has your email leaked?</h1>
+          <p>See which websites and services your email appeared in, then get next steps that work in India.</p>
+        </section>
         <ScanForm onScan={onScan} loading={loading} cooldown={cooldown} compact={!!report} />
         {error && <div className="notice notice-error" role="alert">{error}</div>}
-        {loading && <p className="status" aria-live="polite">Checking public sources. This can take up to 20 seconds.</p>}
-        {report && <Report report={report} />}
+        {loading && <Loading />}
+        {report && !loading && <Report report={report} onRetry={last ? () => onScan(...last) : null} onOpenPlanner={() => setTab("sos")} />}
         <Transparency stats={stats} />
           </>
         )}
