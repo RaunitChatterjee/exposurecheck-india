@@ -1,4 +1,5 @@
 const CARDS = [
+  { tab: "call", title: "I'm on a call right now", text: "A caller says you are under arrest, your account is blocked or a relative is in trouble? Spot the signs, get the exact words to say and what to do next.", urgent: true },
   { tab: "sos", title: "I've been scammed", text: "Money sent, OTP shared or an app installed? Get an ordered plan: who to call first, what to say to your bank, and what proof to keep.", urgent: true },
   { tab: "message", title: "Is this message a scam?", text: "Paste an SMS or WhatsApp message. Works for English, Hinglish and Hindi: KYC threats, digital arrest, customs parcels, electricity cuts, task jobs." },
   { tab: "upi", title: "What will this UPI QR do?", text: "Upload a QR screenshot or paste a link. See whether it sends money, asks to collect from you, or sets up an auto-debit." },

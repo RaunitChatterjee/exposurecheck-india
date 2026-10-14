@@ -277,3 +277,25 @@ a.btn { display: inline-block; text-decoration: none; margin: 4px 0; }
 .report .check { display: block; margin: 6px 0; font-weight: 400; }
 .report textarea { margin-bottom: 10px; }
 a.btn { display: inline-block; text-decoration: none; text-align: center; }
+
+/* On a call now */
+.callnow .row { margin-top: 12px; }
+.verdict { margin-top: 14px; padding: 12px 14px; border-radius: 6px; border-left: 3px solid var(--line); background: var(--bg); }
+.verdict-hangup { border-color: var(--crit); }
+.verdict-warn { border-color: var(--warn); }
+.verdict ul { margin: 8px 0 0; }
+.say { margin: 12px 0; padding: 14px 16px; border-left: 3px solid var(--gold); background: var(--gold-soft); font-size: 18px; line-height: 1.55; border-radius: 0 6px 6px 0; }
+.langs { display: flex; flex-direction: row; gap: 6px; flex-wrap: wrap; }
+.lang { width: auto; }
+.lang { padding: 4px 10px; border-radius: 14px; text-decoration: none; border: 1px solid var(--line); }
+.lang-on { background: var(--brand); color: var(--on-brand); border-color: var(--brand); }
+.urgent { list-style: none; counter-reset: u; padding: 0; margin: 18px 0 0; }
+.urgent li { counter-increment: u; position: relative; padding: 0 0 16px 40px; }
+.urgent li::before { content: counter(u); position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--crit); color: var(--bg); display: grid; place-items: center; font-weight: 700; }
+.urgent h3 { margin: 0 0 4px; }
+.urgent .btn { margin: 6px 8px 0 0; }
+.bigcard { position: fixed; inset: 0; z-index: 50; background: var(--bg); padding: 24px 20px; overflow: auto; }
+.bigcard h1 { font-size: 44px; margin: 0 0 16px; color: var(--crit); }
+.bigcard ul { font-size: 24px; line-height: 1.45; padding-left: 24px; margin: 0 0 24px; }
+.bigcard li { margin-bottom: 14px; }
+.bigcard a { font-weight: 700; }

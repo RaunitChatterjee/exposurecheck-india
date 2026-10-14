@@ -10,9 +10,11 @@ import ScamChecker from "./components/tools/ScamChecker.jsx";
 import HeaderAnalyzer from "./components/tools/HeaderAnalyzer.jsx";
 import UpiInspector from "./components/tools/UpiInspector.jsx";
 import IncidentWizard from "./components/tools/IncidentWizard.jsx";
+import CallMode from "./components/tools/CallMode.jsx";
 
 const TABS = [
   { id: "home", label: "Home" },
+  { id: "call", label: "On a call now", sos: true },
   { id: "sos", label: "I've been scammed", sos: true },
   { id: "breach", label: "Email breaches" },
   { id: "password", label: "Password check" },
@@ -78,6 +80,7 @@ export default function App() {
       </nav>
       <main className="wrap">
         {tab === "home" && <Home onOpen={setTab} />}
+        {tab === "call" && <CallMode onOpen={setTab} />}
         {tab === "sos" && <IncidentWizard />}
         {tab === "upi" && <UpiInspector />}
         {tab === "password" && <PasswordCheck />}
