@@ -126,3 +126,33 @@ for (const [name, text] of [
     assert.equal(analyzeMessage(text).level.id, "none");
   });
 }
+
+import { markMessage } from "./scam.js";
+
+test("markMessage keeps the text intact and marks the triggering phrase", () => {
+  const msg = "You are under digital arrest. Do not disconnect this video call. Visit http://sbi-kyc.xyz/login now.";
+  const r = analyzeMessage(msg);
+  const segs = markMessage(msg, r.signals);
+  assert.equal(segs.map((s) => s.text).join(""), msg);
+  const marked = segs.filter((s) => s.marked).map((s) => s.text.toLowerCase());
+  assert.ok(marked.some((t) => t.includes("digital arrest")), JSON.stringify(marked));
+  assert.ok(marked.some((t) => t.includes("sbi-kyc.xyz")), JSON.stringify(marked));
+});
+
+test("markMessage with no signals returns one plain segment", () => {
+  const msg = "See you at 6 for dinner";
+  assert.deepEqual(markMessage(msg, analyzeMessage(msg).signals), [{ text: msg, marked: false }]);
+});
+
+test("a genuine OTP warning is not marked as a request", () => {
+  const msg = "123456 is your OTP. Do not share this with anyone.";
+  const segs = markMessage(msg, analyzeMessage(msg).signals);
+  assert.ok(!segs.some((s) => s.marked), JSON.stringify(segs));
+});
+
+test("marking works for Devanagari text", () => {
+  const msg = "आपका खाता बंद हो जाएगा। केवाईसी अपडेट करें।";
+  const segs = markMessage(msg, analyzeMessage(msg).signals);
+  assert.equal(segs.map((s) => s.text).join(""), msg);
+  assert.ok(segs.some((s) => s.marked));
+});

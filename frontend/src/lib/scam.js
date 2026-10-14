@@ -15,6 +15,10 @@ const BRANDS = [
   { name: "IRCTC", tokens: ["irctc"], official: ["irctc.co.in"] },
   { name: "Amazon", tokens: ["amazon"], official: ["amazon.in", "amazon.com"] },
   { name: "Flipkart", tokens: ["flipkart"], official: ["flipkart.com"] },
+  { name: "FedEx", tokens: ["fedex"], official: ["fedex.com"] },
+  { name: "DHL", tokens: ["dhl"], official: ["dhl.com"] },
+  { name: "India Post", tokens: ["indiapost"], official: ["indiapost.gov.in"] },
+  { name: "Delhivery", tokens: ["delhivery"], official: ["delhivery.com"] },
   { name: "Jio", tokens: ["jio"], official: ["jio.com"] },
   { name: "Airtel", tokens: ["airtel"], official: ["airtel.in"] },
   { name: "UIDAI (Aadhaar)", tokens: ["uidai"], official: ["uidai.gov.in"] },
@@ -23,7 +27,7 @@ const BRANDS = [
 ];
 
 const TEXT_RULES = [
-  { id: "otp", weight: 35, label: "Asks you to share an OTP, PIN or CVV",
+  { id: "otp", weight: 45, label: "Asks you to share an OTP, PIN or CVV",
     detail: "Banks, UPI apps and officials never ask you to share these. Anyone who does is trying to take over your account.",
     re: /\b(share|send|tell|give|forward|provide|read out|enter)\b[^.\n]{0,60}\b(otp|upi pin|mpin|cvv|atm pin|card number)\b|\b(otp|upi pin|mpin|cvv)\b[^.\n]{0,60}\b(share|send|tell|give|forward|provide)\b/,
     re2: /\botp\b[^.\n]{0,40}\b(?:bata\w*|bhej\w*|share|send|dedo|de do|dijiye|dena)\b|\b(?:bata\w*|bhej\w*|share|send|dedo|de do|dijiye)\b[^.\n]{0,40}\b(?:otp|upi pin|mpin|cvv)\b|(?:ओटीपी|पिन|सीवीवी)[^.\n]{0,40}(?:बता|भेज|शेयर|दें|दीजिए)|(?:बता|भेज|शेयर|दें|दीजिए)[^.\n]{0,30}(?:ओटीपी|पिन|सीवीवी)/ },
@@ -37,17 +41,17 @@ const TEXT_RULES = [
     re2: /\b(?:turant|foran|jaldi se jaldi|aaj hi|24 ghante|48 ghante|abhi (?:update|call|click|link|pay|karein))\b|तुरंत|आज ही|24 घंटे|48 घंटे/ },
   { id: "utility", weight: 25, label: "Electricity or utility disconnection threat",
     detail: "A common scam: 'your power will be cut tonight unless you call or pay'. Check your bill on the official provider app.",
-    re: /(electricity|power)[^.\n]{0,60}(disconnect|cut off|suspend)|(disconnect|cut off)[^.\n]{0,60}(electricity|power)/,
+    re: /(electricity|power)[^\n]{0,90}(disconnect|cut off|cut\b|suspend)|(disconnect|cut off)[^\n]{0,60}(electricity|power)/,
     re2: /\bbijli\b[^.\n]{0,60}\b(?:kaa?t|band|disconnect)\w*|बिजली[^.\n]{0,40}(?:कट|बंद|काट)/ },
   { id: "parcel", weight: 20, label: "Parcel, courier or customs problem",
     detail: "Fake courier messages ask for a small 'fee' or a call back. Track real parcels only on the courier's official site or app.",
-    re: /(parcel|package|courier|consignment)[^.\n]{0,80}(held|stuck|customs|seized|returned|address|incomplete|undelivered)|\b(fedex|dhl|blue dart)\b[^.\n]{0,60}(fee|pay|charge)/,
+    re: /(parcel|package|courier|consignment)[^.\n]{0,80}(held|on hold|stuck|customs|seized|returned|address|incomplete|undelivered)|\b(fedex|dhl|blue dart|india post|delhivery)\b[^.\n]{0,60}(fee|pay|charge)|\b(?:delivery|deliver)\b[^.\n]{0,60}\b(?:attempt\w*|failed|incomplete address|address)\b/,
     re2: /\b(?:parcel|courier|package)\b[^.\n]{0,60}\b(?:rok|atka|customs|pata|address|wapas)\w*|(?:पार्सल|कूरियर)[^.\n]{0,60}(?:रोक|अटका|कस्टम|पता|वापस|जब्त)/ },
   { id: "authority", weight: 35, label: "Claims of police, CBI, customs or 'digital arrest'",
     detail: "No agency arrests people over a video call or asks for money to close a case. 'Digital arrest' is a known scam. Hang up and call 1930.",
     re: /\b(digital arrest|cbi|enforcement directorate|narcotics|money laundering|arrest warrant|customs officer|cyber ?crime branch)\b|\b(?:police|crime branch|cyber cell)\b[^.\n]{0,60}\b(?:case|parcel|drugs?|arrest|fir)\b|\bdrugs?\b[^.\n]{0,50}\bparcel\b|\bparcel\b[^.\n]{0,60}\b(?:drugs?|illegal|contraband)\b/,
     re2: /\b(?:giraftar\w*|warrant)\b|\bpolice\b[^.\n]{0,40}\b(?:bol|se baat|officer)\w*|\bdrugs?\b[^.\n]{0,50}\b(?:parcel|mile|mila)\b|\bparcel\b[^.\n]{0,60}\bdrugs?\b|\bdigital arrest\b|गिरफ्तार|वारंट|सीबीआई|नारकोटिक्स|मनी लॉन्ड्रिंग|डिजिटल अरेस्ट/ },
-  { id: "collect", weight: 30, label: "Asks you to approve a request or scan a QR to receive money",
+  { id: "collect", weight: 40, label: "Asks you to approve a request or scan a QR to receive money",
     detail: "Receiving money never needs your PIN, approval or a QR scan. A 'collect request' takes money out of your account.",
     re: /\b(collect request|approve (the |this )?(payment )?request|scan (this |the )?qr)\b/,
     re2: /\b(?:request|collect)\b[^.\n]{0,30}\b(?:accept|approve|swikar|manjoor)\w*|\b(?:upi pin|pin)\b[^.\n]{0,30}\b(?:daal\w*|dal\w*|dalein)\b|\bqr\b[^.\n]{0,40}\bscan\b[^.\n]{0,60}\b(?:paise|refund|cashback|paisa)\b|रिक्वेस्ट[^.\n]{0,30}(?:स्वीकार|एक्सेप्ट|अप्रूव)|पिन\s+डाल|क्यूआर[^.\n]{0,30}स्कैन/ },
@@ -57,9 +61,9 @@ const TEXT_RULES = [
     re2: /\b(?:aapne|aap ne)\b[^.\n]{0,30}\b(?:jeet\w*|won)\b|\binaam\b|इनाम|लॉटरी|आपने[^.\n]{0,30}(?:जीता|जीते)/ },
   { id: "job", weight: 30, label: "Part-time job or online task offer",
     detail: "'Earn per day' task and Telegram group jobs usually start with small payouts and end with you paying in.",
-    re: /\b(part[- ]?time (job|work)|work from home[^.\n]{0,60}earn|earn (₹|rs\.?\s?)?\d[\d,]*\s?(per|a|\/)\s?(day|hour)|telegram (group|channel)|like (and )?subscribe[^.\n]{0,40}earn)\b|\bper task\b|\b(?:lik(?:e|ing)|review(?:ing)?s?|rating)\b[^.\n]{0,70}\b(?:earn|commission|daily|per day)\b|\b(?:earn|commission)\b[^.\n]{0,70}\b(?:lik(?:e|ing)|reviews?)\b|\btasks?\b[^.\n]{0,40}\b(?:commission|earn|withdraw)\b/,
+    re: /\b(part[- ]?time (job|work)|work from home[^.\n]{0,60}earn|earn (₹|rs\.?\s?)?\d[\d,]*\s?(per|a|\/)\s?(day|hour)|like (and )?subscribe[^.\n]{0,40}earn)\b|\bper task\b|\b(?:lik(?:e|ing)|review(?:ing)?s?|rating)\b[^.\n]{0,70}\b(?:earn|commission|daily|per day)\b|\b(?:earn|commission)\b[^.\n]{0,70}\b(?:lik(?:e|ing)|reviews?)\b|\btasks?\b[^\n]{0,60}\b(?:commission|earn|withdraw)\b/,
     re2: /\bghar baithe\b[^.\n]{0,40}\bkam\w*|\b(?:video )?like\b[^.\n]{0,40}\breview\b[^.\n]{0,40}\b(?:kamaye|kamai|earn|roz)\w*|\broz\b[^.\n]{0,20}\b(?:\d+|hazar)\b[^.\n]{0,20}\bkam\w*|\bpart time\b|घर बैठे[^.\n]{0,30}(?:कमा|कमाई)|पार्ट टाइम|टेलीग्राम\s*(?:ग्रुप|चैनल)/ },
-  { id: "remote", weight: 35, label: "Asks you to install a remote-access app",
+  { id: "remote", weight: 45, label: "Asks you to install a remote-access app",
     detail: "AnyDesk, TeamViewer and similar apps let a stranger see and control your phone, including banking apps. Never install them for a caller.",
     re: /\b(anydesk|teamviewer|quicksupport|rustdesk|airdroid)\b/,
     re2: /एनीडेस्क|टीमव्यूअर|क्विकसपोर्ट/ },
@@ -67,7 +71,7 @@ const TEXT_RULES = [
     detail: "Install apps only from the Play Store or App Store. Fake bank apps spread by link.",
     re: /\b(install|download) (this|the|our) (app|application)\b/,
     re2: /\bapp\b[^.\n]{0,20}\b(?:install|download)\b[^.\n]{0,10}\b(?:karein|karen|kare|krein|karo|kro)\b|ऐप\s+(?:इंस्टॉल|डाउनलोड)/ },
-  { id: "sim", weight: 25, label: "SIM or mobile number block threat",
+  { id: "sim", weight: 35, label: "SIM or mobile number block threat",
     detail: "Telecom operators and TRAI do not threaten disconnection by SMS or call asking you to press a key or share details.",
     re: /\b(sim|mobile number)\b[^.\n]{0,50}\b(blocked|deactivated|disconnected|suspended)\b|\btrai\b/,
     re2: /\bsim\b[^.\n]{0,40}\b(?:band|block|deactivate)\w*|सिम[^.\n]{0,30}(?:बंद|ब्लॉक)/ },
@@ -78,7 +82,7 @@ const TEXT_RULES = [
   { id: "secrecy", weight: 25, label: "Tells you to stay on the call or keep it secret",
     detail: "Scammers isolate you so no one can tell you it is a fraud. A real agency never forbids you from speaking to family or ending a call.",
     re: /\b(do not|don't|dont|never)\s+(?:tell|inform|discuss|disconnect|cut|end|hang up)\b[^.\n]{0,50}\b(?:anyone|anybody|family|others|call|video|case)\b|\bkeep (?:this|it) (?:confidential|secret)\b|\bconfidential (?:case|matter)\b|\bstay on the (?:video )?call\b/,
-    re2: /\b(?:kisi ko|kisi se)\b[^.\n]{0,20}\b(?:mat|nahi)\b[^.\n]{0,15}\b(?:bata\w*|bol\w*)\b|\bcall\b[^.\n]{0,25}\b(?:mat|na)\b[^.\n]{0,10}\b(?:kaat\w*|kat\w*|band)\b|\bvideo call\b[^.\n]{0,20}\b(?:mat|na)\b[^.\n]{0,10}\b(?:kaat\w*|kat\w*)\b|किसी को[^.\n]{0,20}(?:मत|नहीं)[^.\n]{0,10}(?:बता|बोल)/ },
+    re2: /\b(?:kisi ko|kisi se)\b[^.\n]{0,20}\b(?:mat|nahi)\b[^.\n]{0,15}\b(?:bata\w*|bol\w*)\b|\b(?:kisi ko|kisi se)\b[^.\n]{0,15}\bbata\w*\s+(?:mat|nahi|na)\b|\b(?:video )?call\b[^.\n]{0,25}\b(?:par|pe)\b[^.\n]{0,15}\b(?:rehna|rahna|rahein|rukna|bane rahna)\b|\bcall\b[^.\n]{0,25}\b(?:mat|na)\b[^.\n]{0,10}\b(?:kaat\w*|kat\w*|band)\b|\bvideo call\b[^.\n]{0,20}\b(?:mat|na)\b[^.\n]{0,10}\b(?:kaat\w*|kat\w*)\b|किसी को[^.\n]{0,20}(?:मत|नहीं)[^.\n]{0,10}(?:बता|बोल)/ },
   { id: "transfer", weight: 30, label: "Asks you to move money to 'verify' or 'clear' a case",
     detail: "No court, bank, RBI or police officer asks you to transfer money to a 'safe', 'verification' or 'supervision' account. This is how digital-arrest scams take your savings.",
     re: /\b(?:transfer|deposit|send|pay)\b[^.\n]{0,60}\b(?:rbi|verification|safe|secure|supervision|clearance|investigation)\b|\b(?:clear|close|settle)\b[^.\n]{0,20}\b(?:case|your name)\b/,
@@ -95,6 +99,22 @@ const TEXT_RULES = [
     detail: "Scams often push you to phone a 'helpline' or 'officer' number from the message instead of using the official one printed on your bill or card.",
     re: /\b(?:call|contact|whatsapp|reach)\b[^.\n]{0,50}(?:\+?91[-\s]?)?[6-9][\d xX*]{8,11}\b/,
     re2: /\b(?:sampark|call)\b[^.\n]{0,50}(?:\+?91[-\s]?)?[6-9][\d xX*]{8,11}\b|सम्पर्क|संपर्क[^.\n]{0,40}[6-9][\d xX*]{8,11}/ },
+  { id: "details", weight: 25, label: "Asks for your bank, card or ID details",
+    detail: "Banks, tax and government offices do not ask you to send account, card, Aadhaar or PAN details by message or call.",
+    re: /\b(?:send|share|provide|enter|submit|give)\b[^.\n]{0,40}\b(?:bank|card|account|aadhaar|aadhar|pan)\s+(?:details|number|info(?:rmation)?)\b/,
+    re2: /\b(?:bank|card|account|aadhaar|aadhar|pan)\s+(?:details|number)\b[^.\n]{0,30}\b(?:bhej\w*|share|send|de\w*|batayein|batao)\b/ },
+  { id: "refund", weight: 20, label: "Unexpected refund or tax refund",
+    detail: "A 'pending refund' you did not expect is bait: you are asked for details or to approve a payment to receive it.",
+    re: /\b(?:income tax|tax|gst|bank|insurance) refund\b|\brefund\b[^.\n]{0,40}\b(?:pending|approved|credited|ready)\b/,
+    re2: /\brefund\b[^.\n]{0,30}\b(?:pending|approve\w*|milega|mil\s+jayega)\b/ },
+  { id: "ivr", weight: 20, label: "'Press 1' to talk to customer care",
+    detail: "Fake telecom and bank messages try to move you to a phone call. Use the number printed on your card or bill instead.",
+    re: /\bpress\s+\d\b[^.\n]{0,40}\b(?:talk|speak|customer care|executive|agent)\b/,
+    re2: /\b\d\s+dabayein\b|\b\d\s+dabaye\b/ },
+  { id: "subscription", weight: 25, label: "Expired subscription or payment problem",
+    detail: "'Your subscription expired, update payment details' is a common phishing lure for streaming, telecom and cloud accounts.",
+    re: /\b(?:subscription|membership|plan|account)\b[^.\n]{0,40}\b(?:expired|suspended|cancell?ed|on hold)\b[^.\n]{0,80}\b(?:update|renew|verify|confirm)\b[^.\n]{0,30}\b(?:payment|billing|card)\b/,
+    re2: /\b(?:subscription|plan)\b[^.\n]{0,40}\b(?:expire|khatam|band)\w*\b[^.\n]{0,60}\b(?:update|renew)\b/ },
 ];
 
 const URL_RE = /\b(?:https?:\/\/|www\.)[^\s<>"')]+|\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:com|in|co\.in|net|org|xyz|top|click|link|info|shop|site|online|live|vip|icu|buzz|cfd|sbs)\b(?:\/[^\s<>"')]*)?/gi;
@@ -164,19 +184,70 @@ export function detectLanguage(text) {
   return hits >= 2 ? "Hinglish" : "English";
 }
 
+// Find every place a rule matches so the UI can mark the exact phrases. Offsets index into the lower-cased text,
+// which has the same length as the original for the scripts we handle (checked by the caller).
+function collectSpans(target, rule) {
+  const spans = [];
+  for (const re of [rule.re, rule.re2]) {
+    if (!re) continue;
+    const g = new RegExp(re.source, re.flags.includes("g") ? re.flags : `${re.flags}g`);
+    for (const m of target.matchAll(g)) {
+      if (!m[0]) continue;
+      spans.push({ start: m.index, end: m.index + m[0].length });
+      if (spans.length >= 4) return spans;
+    }
+  }
+  return spans;
+}
+
+const blank = (m) => " ".repeat(m.length);
+
 export function analyzeMessage(text) {
-  const lower = (text || "").toLowerCase();
+  const raw = text || "";
+  const lower = raw.toLowerCase();
+  const aligned = lower.length === raw.length;
   const signals = [];
   for (const r of TEXT_RULES) {
-    const target = r.id === "otp" ? lower.replace(NEGATED_SHARE, " ").replace(NEGATED_SHARE_HI, " ").replace(NEGATED_SHARE_DV, " ") : lower;
+    // Same-length masking keeps match offsets valid for highlighting.
+    const target = r.id === "otp" ? lower.replace(NEGATED_SHARE, blank).replace(NEGATED_SHARE_HI, blank).replace(NEGATED_SHARE_DV, blank) : lower;
     const m = target.match(r.re) || (r.re2 ? target.match(r.re2) : null);
-    if (m) signals.push({ id: r.id, weight: r.weight, label: r.label, detail: r.detail, evidence: m[0].trim().slice(0, 80) });
+    if (m) signals.push({ id: r.id, weight: r.weight, label: r.label, detail: r.detail, evidence: m[0].trim().slice(0, 80), spans: aligned ? collectSpans(target, r) : [] });
   }
-  const urls = extractUrls(text || "");
-  for (const u of urls) signals.push(...urlSignals(u));
+  const urls = extractUrls(raw);
+  for (const u of urls) {
+    const at = aligned ? lower.indexOf(u.toLowerCase()) : -1;
+    for (const sig of urlSignals(u)) signals.push({ ...sig, spans: at >= 0 ? [{ start: at, end: at + u.length }] : [] });
+  }
   const seen = new Set();
   const unique = signals.filter((s) => (seen.has(s.id) ? false : seen.add(s.id)));
   const score = Math.min(100, unique.reduce((a, s) => a + s.weight, 0));
   unique.sort((a, b) => b.weight - a.weight);
-  return { score, level: levelFor(score), signals: unique, urls, language: detectLanguage(text || "") };
+  return { score, level: levelFor(score), signals: unique, urls, language: detectLanguage(raw) };
+}
+
+// Split the message into plain and marked segments for display. Overlapping phrases are merged.
+export function markMessage(text, signals) {
+  const raw = text || "";
+  const marks = [];
+  for (const s of signals || []) for (const sp of s.spans || []) marks.push({ start: sp.start, end: sp.end, weight: s.weight, labels: [s.label] });
+  if (!marks.length) return [{ text: raw, marked: false }];
+  marks.sort((a, b) => a.start - b.start || b.end - a.end);
+  const merged = [];
+  for (const m of marks) {
+    const last = merged[merged.length - 1];
+    if (last && m.start < last.end) {
+      last.end = Math.max(last.end, m.end);
+      last.weight = Math.max(last.weight, m.weight);
+      for (const l of m.labels) if (!last.labels.includes(l)) last.labels.push(l);
+    } else merged.push({ ...m, labels: [...m.labels] });
+  }
+  const out = [];
+  let pos = 0;
+  for (const m of merged) {
+    if (m.start > pos) out.push({ text: raw.slice(pos, m.start), marked: false });
+    out.push({ text: raw.slice(m.start, m.end), marked: true, strong: m.weight >= 30, labels: m.labels });
+    pos = m.end;
+  }
+  if (pos < raw.length) out.push({ text: raw.slice(pos), marked: false });
+  return out;
 }
