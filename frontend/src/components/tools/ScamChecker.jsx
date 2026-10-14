@@ -1,18 +1,42 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ToolShell from "./ToolShell.jsx";
 import Section from "../Section.jsx";
 import { analyzeMessage, markMessage } from "../../lib/scam.js";
 import ReportWrongResult from "./ReportWrongResult.jsx";
+import { readScreenshot, OCR_DOWNLOAD_MB } from "../../lib/ocr.js";
 
 const EXAMPLE = "Dear SBI customer, your account will be blocked today. Update your KYC immediately: http://sbi-kyc-update.xyz/login";
 
 export default function ScamChecker() {
   const [text, setText] = useState("");
   const [result, setResult] = useState(null);
+  const [ocr, setOcr] = useState({ busy: false, note: "", error: "", pct: 0 });
+  const [drag, setDrag] = useState(false);
+  const fileRef = useRef(null);
 
   function run(e) {
     e.preventDefault();
     setResult({ ...analyzeMessage(text), text });
+  }
+
+  async function onImage(file) {
+    if (!file) return;
+    setResult(null);
+    setOcr({ busy: true, note: "", error: "", pct: 0 });
+    try {
+      const { text: found, confidence } = await readScreenshot(file, (m) => {
+        if (m.status === "recognizing text") setOcr((o) => ({ ...o, pct: Math.round((m.progress || 0) * 100) }));
+      });
+      if (!found) { setOcr({ busy: false, note: "", error: "We could not read any text in that image. Try a sharper, closer screenshot, or paste the text.", pct: 0 }); return; }
+      setText(found);
+      const good = confidence >= 60;
+      setOcr({ busy: false, pct: 100, error: "", note: good
+        ? "Text read from your screenshot. Check it for mistakes, edit if needed, then press Check message again."
+        : "The screenshot was hard to read, so the text below may have mistakes. Please correct it, then press Check message." });
+      if (good) setResult({ ...analyzeMessage(found), text: found });
+    } catch (e) {
+      setOcr({ busy: false, note: "", pct: 0, error: e?.message && /image/i.test(e.message) ? e.message : "Reading the screenshot failed. Paste the message text instead." });
+    }
   }
 
   return (
@@ -21,9 +45,20 @@ export default function ScamChecker() {
       intro="Paste an SMS, WhatsApp message or email. We look for the patterns behind common Indian frauds: KYC threats, fake courier and electricity notices, UPI collect requests, 'digital arrest' calls and look-alike bank links."
       privacy="Analysis happens in your browser. The message is not sent to any server. This tool finds warning signs; it cannot prove a message is safe, so when in doubt, contact the sender through an official number or app.">
       <form className="panel scan" onSubmit={run}>
+        <div className={`drop ${drag ? "drop-on" : ""}`}
+             onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
+             onDragLeave={() => setDrag(false)}
+             onDrop={(e) => { e.preventDefault(); setDrag(false); onImage(e.dataTransfer.files?.[0]); }}>
+          <p>{ocr.busy ? `Reading screenshot${ocr.pct ? ` ${ocr.pct}%` : "…"}` : "Got a screenshot? Drop it here"}</p>
+          <button type="button" className="btn btn-quiet" disabled={ocr.busy} onClick={() => fileRef.current?.click()}>Choose screenshot</button>
+          <input ref={fileRef} type="file" accept="image/*" hidden aria-label="Screenshot of the message" onChange={(e) => { onImage(e.target.files?.[0]); e.target.value = ""; }} />
+          <p className="fine">English and Hindi. The first time, about {OCR_DOWNLOAD_MB} MB of reading software loads from this site. The image never leaves your device.</p>
+        </div>
+        {ocr.error && <div className="notice notice-warn" role="alert">{ocr.error}</div>}
+        {ocr.note && <div className="notice notice-demo" role="status">{ocr.note}</div>}
         <label htmlFor="msg">Message text</label>
         <textarea id="msg" rows={6} maxLength={5000} value={text} placeholder="Paste the message here"
-                  onChange={(e) => { setText(e.target.value); setResult(null); }} />
+                  onChange={(e) => { setText(e.target.value); setResult(null); setOcr((o) => ({ ...o, note: "", error: "" })); }} />
         <div className="row row-end">
           <button className="btn" type="submit" disabled={!text.trim()}>Check message</button>
           <button type="button" className="textbtn" onClick={() => { setText(EXAMPLE); setResult(null); }}>Try an example</button>
