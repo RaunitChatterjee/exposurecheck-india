@@ -38,6 +38,26 @@ Selected with `BREACH_PROVIDER`:
 
 The India-related breach list in `backend/app/data/india_breaches.json` is curated and best-effort. DKIM detection is selector-guessing by design, so a miss is reported as inconclusive.
 
+## How well does the scam checker work?
+
+Short answer: it catches most common patterns, it is not perfect, and the numbers below come from a small test set, so treat them as a rough guide, not a guarantee.
+
+The checker is rule-based (patterns and weights, no AI model, nothing leaves your browser). It was tested on two labelled sets of **synthetic** messages written by the maintainer (not real messages, same author for both). A message counts as "flagged" when the checker says "Likely a scam" or "Very likely a scam".
+
+| Set | Scams flagged | Normal messages wrongly flagged |
+|---|---|---|
+| Before calibration (first version of the rules), 30 scams + 18 normal | 14/30 (47%) | 1/18 |
+| Development set, after tuning the rules on it | 27/30 (90%) | 0/18 (2 rated only "Suspicious") |
+| **Held-out set** (written after the rules were frozen, not tuned on), 18 scams + 12 normal | **15/18 (83%)** | **0/12** |
+
+Read this honestly:
+- The development number is optimistic because the rules were adjusted after seeing those messages. The held-out number is the fairer one, and it is still only 18 scams.
+- The same person wrote the rules and the messages, so real-world scams that look different will do worse. The normal messages were also fairly easy.
+- Known misses: electricity cut-off notices worded softly, a fake loan app message, subscription-renewal lures, and some Hinglish parcel messages.
+- It gives warning signs, never a verdict that something is safe.
+
+Run it yourself: `cd frontend && npm run benchmark`. Data is in `frontend/test-data/`. If the checker gets something wrong, use the "This result looks wrong? Report it" button in the app or see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Architecture
 
 ```
