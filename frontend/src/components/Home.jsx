@@ -1,7 +1,9 @@
 const CARDS = [
   { tab: "call", title: "I'm on a call right now", text: "A caller says you are under arrest, your account is blocked or a relative is in trouble? Spot the signs, get the exact words to say and what to do next.", urgent: true },
   { tab: "sos", title: "I've been scammed", text: "Money sent, OTP shared or an app installed? Get an ordered plan: who to call first, what to say to your bank, and what proof to keep.", urgent: true },
-  { tab: "message", title: "Is this message a scam?", text: "Paste an SMS or WhatsApp message. Works for English, Hinglish and Hindi: KYC threats, digital arrest, customs parcels, electricity cuts, task jobs." },
+  { tab: "message", title: "Is this message a scam?", text: "Paste an SMS or WhatsApp message, or drop a screenshot. Works for English, Hinglish and Hindi: KYC threats, digital arrest, customs parcels, electricity cuts, task jobs." },
+  { tab: "domain", title: "Is this the real website?", text: "Paste a link or email address. We compare it with official bank, government, courier and app addresses and spot look-alikes. Banks now end in .bank.in." },
+  { tab: "family", title: "Family safety card", text: "A printable card for parents and grandparents in English, Hindi or Hinglish: five rules, the 1930 helpline and a family code word." },
   { tab: "upi", title: "What will this UPI QR do?", text: "Upload a QR screenshot or paste a link. See whether it sends money, asks to collect from you, or sets up an auto-debit." },
   { tab: "breach", title: "Has my email leaked?", text: "See which websites and services your email appeared in, then get steps that work in India." },
   { tab: "password", title: "Is my password exposed?", text: "Check a password against known leaks without sending the password anywhere." },

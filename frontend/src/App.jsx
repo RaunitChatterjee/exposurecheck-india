@@ -11,16 +11,20 @@ import HeaderAnalyzer from "./components/tools/HeaderAnalyzer.jsx";
 import UpiInspector from "./components/tools/UpiInspector.jsx";
 import IncidentWizard from "./components/tools/IncidentWizard.jsx";
 import CallMode from "./components/tools/CallMode.jsx";
+import DomainChecker from "./components/tools/DomainChecker.jsx";
+import FamilyCard from "./components/tools/FamilyCard.jsx";
 
 const TABS = [
   { id: "home", label: "Home" },
   { id: "call", label: "On a call now", sos: true },
   { id: "sos", label: "I've been scammed", sos: true },
-  { id: "breach", label: "Email breaches" },
-  { id: "password", label: "Password check" },
-  { id: "message", label: "Scam message check" },
-  { id: "upi", label: "UPI QR / link check" },
-  { id: "headers", label: "Email header analysis" },
+  { id: "breach", label: "Email breach" },
+  { id: "password", label: "Password" },
+  { id: "message", label: "Scam message" },
+  { id: "upi", label: "UPI QR / link" },
+  { id: "domain", label: "Real website?" },
+  { id: "family", label: "Family card" },
+  { id: "headers", label: "Email headers" },
 ];
 
 function Mark() {
@@ -83,6 +87,8 @@ export default function App() {
         {tab === "call" && <CallMode onOpen={setTab} />}
         {tab === "sos" && <IncidentWizard />}
         {tab === "upi" && <UpiInspector />}
+        {tab === "domain" && <DomainChecker />}
+        {tab === "family" && <FamilyCard />}
         {tab === "password" && <PasswordCheck />}
         {tab === "message" && <ScamChecker />}
         {tab === "headers" && <HeaderAnalyzer />}

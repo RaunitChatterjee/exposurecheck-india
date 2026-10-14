@@ -10,7 +10,7 @@ ExposureCheck India is designed so that it **cannot** build a list of the people
 | IP address | Used in process memory only, for rate limiting. Not persisted. |
 
 ## Browser-only tools
-The password check, scam message check and email header analyzer, UPI QR/link inspector and the "I've been scammed" planner run entirely in your browser. QR images are decoded locally and never uploaded; the details you type into the planner (amounts, transaction IDs, names) are never sent or stored. Pasted messages and headers are not sent to any server. The password check hashes your password locally and sends only the first 5 characters of the SHA-1 hash to the [Pwned Passwords](https://haveibeenpwned.com/API/v3#PwnedPasswords) range API (k-anonymity), which cannot reveal the password.
+The password check, scam message check and email header analyzer, UPI QR/link inspector and the "I've been scammed" planner run entirely in your browser. QR images are decoded locally and never uploaded; screenshots of messages are read locally by OCR software served from this site and never uploaded, and the address checker and family card also run locally; the details you type into the planner (amounts, transaction IDs, names) are never sent or stored. Pasted messages and headers are not sent to any server. The password check hashes your password locally and sends only the first 5 characters of the SHA-1 hash to the [Pwned Passwords](https://haveibeenpwned.com/API/v3#PwnedPasswords) range API (k-anonymity), which cannot reveal the password.
 
 ## What is stored
 One table, `daily_stats`, with anonymous counters per day: scans, scans with a breach, breaches surfaced, domain scans. There is no per-user or per-email row.
