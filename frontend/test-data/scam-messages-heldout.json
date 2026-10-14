@@ -1,0 +1,272 @@
+[
+ {
+  "id": "h01",
+  "set": "heldout",
+  "label": "scam",
+  "category": "digital arrest",
+  "language": "English",
+  "text": "This is Inspector Rao from Mumbai Cyber Cell. A case is registered against your SIM for money laundering. You are under digital arrest. Do not disconnect this call or tell anyone. Transfer Rs 80,000 for verification to the supervision account.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h02",
+  "set": "heldout",
+  "label": "scam",
+  "category": "digital arrest",
+  "language": "Hinglish",
+  "text": "Aapke naam se ek parcel pakda gaya hai jisme drugs hain. CBI officer se video call par baat karo, kisi ko mat batana warna arrest ho jaoge. Jaanch ke liye paisa RBI account me bhejo.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h03",
+  "set": "heldout",
+  "label": "scam",
+  "category": "customs parcel",
+  "language": "English",
+  "text": "Your international parcel is held at Delhi customs. Pay Rs 2,350 clearance fee within 24 hours at http://customs-clear-in.top/pay or the parcel will be returned.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h04",
+  "set": "heldout",
+  "label": "scam",
+  "category": "customs parcel",
+  "language": "Hinglish",
+  "text": "Aapka courier customs me ruka hua hai. Delivery ke liye Rs 1,200 fee abhi bharein: http://bit.ly/3xYz12",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h05",
+  "set": "heldout",
+  "label": "scam",
+  "category": "electricity cut-off",
+  "language": "Hinglish",
+  "text": "Priya ji, aapka bijli bill pichle mahine ka pending hai. Aaj raat 9:30 baje connection kat jayega. Turant is number par call karein 98XXXXXX10.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h06",
+  "set": "heldout",
+  "label": "scam",
+  "category": "electricity cut-off",
+  "language": "English",
+  "text": "Dear consumer, your electricity will be disconnected tonight at 9.30 pm due to unpaid bill. Contact our officer immediately on 91XXXXXXXX.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h07",
+  "set": "heldout",
+  "label": "scam",
+  "category": "KYC/account block",
+  "language": "English",
+  "text": "HDFC Bank: Your PAN is not linked. Your account will be suspended today. Click to update now: http://hdfc-pan-verify.xyz",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h08",
+  "set": "heldout",
+  "label": "scam",
+  "category": "KYC/account block",
+  "language": "Hinglish",
+  "text": "Aapka SBI YONO account aaj band ho jayega. KYC update karne ke liye link par click karein: http://sbi-yono-update.in.net",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h09",
+  "set": "heldout",
+  "label": "scam",
+  "category": "task job",
+  "language": "English",
+  "text": "Part-time job! Earn Rs 5,000 daily by liking YouTube videos. Join our Telegram group for tasks. Small deposit needed to unlock higher commission.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h10",
+  "set": "heldout",
+  "label": "scam",
+  "category": "task job",
+  "language": "Hinglish",
+  "text": "Ghar baithe kaam karke roz 3000 kamaye. WhatsApp par message karein. Pehle chhota sa deposit karna hoga task unlock karne ke liye.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h11",
+  "set": "heldout",
+  "label": "scam",
+  "category": "investment",
+  "language": "English",
+  "text": "Guaranteed 40% monthly returns! Our VIP stock group gives sure-shot tips from SEBI analysts. Join the WhatsApp group now, limited seats.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h12",
+  "set": "heldout",
+  "label": "scam",
+  "category": "prize",
+  "language": "English",
+  "text": "Congratulations! You have won Rs 25,00,000 in the KBC lucky draw. To claim, pay the processing fee of Rs 4,999 and share your bank details.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h13",
+  "set": "heldout",
+  "label": "scam",
+  "category": "OTP/UPI request",
+  "language": "Hinglish",
+  "text": "Sir maine galti se aapke number par Rs 15,000 bhej diye. Aapko ek request aayegi, accept karke apna UPI PIN daal dijiye, paisa wapas aa jayega.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h14",
+  "set": "heldout",
+  "label": "scam",
+  "category": "remote access",
+  "language": "English",
+  "text": "This is Airtel support. To fix your SIM issue, please install the AnyDesk app and share the 9-digit code with me.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h15",
+  "set": "heldout",
+  "label": "scam",
+  "category": "SIM block",
+  "language": "English",
+  "text": "Your mobile number will be blocked in 2 hours as per TRAI KYC rules. Call 98XXXXXX55 to avoid disconnection.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h16",
+  "set": "heldout",
+  "label": "scam",
+  "category": "fake loan app",
+  "language": "English",
+  "text": "Instant loan Rs 50,000 in 5 minutes, no documents. Download the app http://quickcash-loan.apk and allow access to contacts and gallery.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h17",
+  "set": "heldout",
+  "label": "scam",
+  "category": "fake refund",
+  "language": "English",
+  "text": "Your Amazon order is cancelled and a refund of Rs 3,499 is pending. Share your card number and OTP to receive the refund.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h18",
+  "set": "heldout",
+  "label": "scam",
+  "category": "subscription lure",
+  "language": "English",
+  "text": "Your Netflix subscription has expired. Update your payment details to continue watching: http://netflix-billing-help.top",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h19",
+  "set": "heldout",
+  "label": "legit",
+  "category": "bank alert",
+  "language": "English",
+  "text": "Rs 1,250.00 debited from A/c XX4821 on 12-Oct via UPI to ZOMATO. Avl bal Rs 10,320. Not you? Call the number on the back of your card.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h20",
+  "set": "heldout",
+  "label": "legit",
+  "category": "OTP",
+  "language": "English",
+  "text": "123456 is your OTP for login to Flipkart. Do not share this OTP with anyone. Valid for 10 minutes.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h21",
+  "set": "heldout",
+  "label": "legit",
+  "category": "delivery",
+  "language": "English",
+  "text": "Your Amazon order #402-1234567 has been shipped and will arrive by Friday. Track it in the Amazon app.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h22",
+  "set": "heldout",
+  "label": "legit",
+  "category": "chat",
+  "language": "Hinglish",
+  "text": "Bhai kal 7 baje milte hain, main ghar se nikal raha hu. Movie ke tickets le liye maine.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h23",
+  "set": "heldout",
+  "label": "legit",
+  "category": "utility bill",
+  "language": "English",
+  "text": "Your electricity bill for September is Rs 1,840, due on 25 Oct. Pay in the official app or at the counter. Thank you.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h24",
+  "set": "heldout",
+  "label": "legit",
+  "category": "chat",
+  "language": "English",
+  "text": "Hey, can you send me the notes from yesterday's lecture? I'll return the book on Monday.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h25",
+  "set": "heldout",
+  "label": "legit",
+  "category": "awareness",
+  "language": "English",
+  "text": "Beware of fraud: banks never ask for your OTP, PIN or CVV. Never share them with anyone, even if they claim to be from the bank.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h26",
+  "set": "heldout",
+  "label": "legit",
+  "category": "appointment",
+  "language": "English",
+  "text": "Reminder: your dental appointment is tomorrow at 4:30 pm at Smile Clinic. Reply YES to confirm.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h27",
+  "set": "heldout",
+  "label": "legit",
+  "category": "bank alert",
+  "language": "Hinglish",
+  "text": "Aapke account me Rs 20,000 salary credit hui hai. Dhanyavaad.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h28",
+  "set": "heldout",
+  "label": "legit",
+  "category": "OTP",
+  "language": "Hinglish",
+  "text": "Aapka OTP 482913 hai. Ise kisi ke saath share na karein.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h29",
+  "set": "heldout",
+  "label": "legit",
+  "category": "newsletter",
+  "language": "English",
+  "text": "Your monthly statement is ready. Log in to the official app to view it. We will never ask for your password by email.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ },
+ {
+  "id": "h30",
+  "set": "heldout",
+  "label": "legit",
+  "category": "delivery",
+  "language": "Hinglish",
+  "text": "Aapka Swiggy order 15 minute me pahuch jayega. Delivery partner Ravi aapko call karega.",
+  "source": "synthetic (written by the maintainer, not a real message)"
+ }
+]
