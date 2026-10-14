@@ -2,6 +2,7 @@ import { Fragment, useRef, useState } from "react";
 import ToolShell from "./ToolShell.jsx";
 import Section from "../Section.jsx";
 import { parseUpi, analyzeUpi } from "../../lib/upi.js";
+import ReportWrongResult from "./ReportWrongResult.jsx";
 
 const SEV = { bad: "Problem", warn: "Check", ok: "Good", info: "Note" };
 const EXAMPLE = "upi://collect?pa=refund.support@ybl&pn=Customer Care Refund&am=4999&cu=INR&tn=Refund approval";
@@ -97,6 +98,8 @@ export default function UpiInspector() {
               <li>If you already paid, call <b>1930</b> straight away and use the “I've been scammed” tab.</li>
             </ul>
           </Section>
+          <ReportWrongResult tool="UPI QR / link inspector" text={text} textLabel="link"
+            summary={[`Verdict: ${result.verdict.label}`, ...result.findings.map((f) => `${SEV[f.severity]}: ${f.title}`)]} />
         </div>
       )}
     </ToolShell>

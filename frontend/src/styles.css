@@ -264,3 +264,16 @@ a.btn { display: inline-block; text-decoration: none; margin: 4px 0; }
 .b-domain { margin-left: 8px; color: var(--muted); font-size: 14px; }
 .summary.incomplete { display: block; }
 .how + .fine { margin-top: 18px; }
+
+/* Highlighted message + wrong-result report */
+.highlighted { margin: 18px 0; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.hl-text { white-space: pre-wrap; overflow-wrap: anywhere; margin: 8px 0 0; line-height: 1.7; }
+.hl-text mark { color: inherit; padding: 1px 3px; border-radius: 3px; border-bottom: 2px solid; cursor: help; }
+.hl-high { background: color-mix(in srgb, var(--crit) 22%, transparent); border-color: var(--crit); }
+.hl-med { background: var(--gold-soft); border-color: var(--gold); }
+.report-link { margin-top: 20px; }
+.report h3 { margin: 0 0 6px; }
+.report fieldset { border: 0; padding: 0; margin: 12px 0; }
+.report .check { display: block; margin: 6px 0; font-weight: 400; }
+.report textarea { margin-bottom: 10px; }
+a.btn { display: inline-block; text-decoration: none; text-align: center; }

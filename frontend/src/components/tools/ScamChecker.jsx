@@ -1,7 +1,8 @@
 import { useState } from "react";
 import ToolShell from "./ToolShell.jsx";
 import Section from "../Section.jsx";
-import { analyzeMessage } from "../../lib/scam.js";
+import { analyzeMessage, markMessage } from "../../lib/scam.js";
+import ReportWrongResult from "./ReportWrongResult.jsx";
 
 const EXAMPLE = "Dear SBI customer, your account will be blocked today. Update your KYC immediately: http://sbi-kyc-update.xyz/login";
 
@@ -11,7 +12,7 @@ export default function ScamChecker() {
 
   function run(e) {
     e.preventDefault();
-    setResult(analyzeMessage(text));
+    setResult({ ...analyzeMessage(text), text });
   }
 
   return (
@@ -40,6 +41,14 @@ export default function ScamChecker() {
           </div>
           {result.signals.length > 0 && (
             <>
+              <div className="highlighted" aria-label="Your message with warning phrases marked">
+                <p className="fine">The phrases that triggered warnings are marked.</p>
+                <p className="hl-text">
+                  {markMessage(result.text, result.signals).map((seg, i) => seg.marked
+                    ? <mark key={i} className={seg.strong ? "hl-high" : "hl-med"} title={seg.labels.join(", ")}>{seg.text}</mark>
+                    : <span key={i}>{seg.text}</span>)}
+                </p>
+              </div>
               <ul className="signals">
                 {result.signals.map((s) => (
                   <li key={s.id}>
@@ -58,6 +67,8 @@ export default function ScamChecker() {
               </Section>
             </>
           )}
+          <ReportWrongResult tool="Scam message checker" text={result.text}
+            summary={[`Verdict: ${result.level.label} (score ${result.score})`, `Warning signs: ${result.signals.map((s) => s.label).join("; ") || "none"}`, `Language detected: ${result.language}`]} />
         </div>
       )}
     </ToolShell>
