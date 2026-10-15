@@ -1,7 +1,7 @@
 // Official web addresses of organisations that scammers imitate most often in India.
 // Every entry was checked by loading the organisation's own website on CHECKED_ON, except where `check` says "known".
 // Banks: the RBI told banks to move to the exclusive ".bank.in" domain by 31 Oct 2025 (circular of 22 Apr 2025).
-// The old bank addresses below were seen redirecting to the new ones on CHECKED_ON.
+// On CHECKED_ON, 15 of the 16 old bank addresses below redirected to the new ones; SBI's old address (sbi.co.in) still opened normally.
 // This list is NOT complete. An address missing from it is "unknown", never "safe" or "fake".
 
 export const CHECKED_ON = "2026-10-15";
