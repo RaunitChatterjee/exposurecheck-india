@@ -3,6 +3,7 @@ import ToolShell from "./ToolShell.jsx";
 import Section from "../Section.jsx";
 import { analyzeMessage, markMessage } from "../../lib/scam.js";
 import ReportWrongResult from "./ReportWrongResult.jsx";
+import ShareVerdict from "./ShareVerdict.jsx";
 import { readScreenshot, OCR_DOWNLOAD_MB } from "../../lib/ocr.js";
 
 const EXAMPLE = "Dear SBI customer, your account will be blocked today. Update your KYC immediately: http://sbi-kyc-update.xyz/login";
@@ -102,6 +103,7 @@ export default function ScamChecker() {
               </Section>
             </>
           )}
+          <ShareVerdict kind="message" level={result.level.id} signs={result.signals} />
           <ReportWrongResult tool="Scam message checker" text={result.text}
             summary={[`Verdict: ${result.level.label} (score ${result.score})`, `Warning signs: ${result.signals.map((s) => s.label).join("; ") || "none"}`, `Language detected: ${result.language}`]} />
         </div>

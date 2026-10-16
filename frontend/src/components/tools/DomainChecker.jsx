@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import ToolShell from "./ToolShell.jsx";
 import Section from "../Section.jsx";
 import ReportWrongResult from "./ReportWrongResult.jsx";
+import ShareVerdict from "./ShareVerdict.jsx";
 import { analyzeDomain, LIST_SUMMARY } from "../../lib/domains.js";
 import { CHECKED_ON } from "../../lib/orgs.js";
 
@@ -57,6 +58,8 @@ export default function DomainChecker() {
               <li>If you already entered details on this site, call <b>1930</b> and use the “I've been scammed” tab.</li>
             </ul>
           </Section>
+          <ShareVerdict kind="website" level={result.verdict.id} address={result.host}
+            signs={result.findings.filter((f) => f.severity === "bad" || f.severity === "warn").map((f) => ({ label: f.title, weight: f.severity === "bad" ? 2 : 1 }))} />
           <ReportWrongResult tool="Is this the real website? (address check)" text={text} textLabel="address"
             summary={[`Verdict: ${result.verdict.label}`, ...result.findings.map((f) => `${SEV[f.severity]}: ${f.title}`)]} />
         </div>
