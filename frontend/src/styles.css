@@ -336,3 +336,17 @@ input.mono { width: 100%; }
   .fcard { position: absolute; left: 0; top: 0; width: 100%; max-width: none; border: 2px solid #000; border-radius: 0; margin: 0; page-break-inside: avoid; }
 }
 .row { flex-wrap: wrap; }
+
+/* Warn someone */
+.share h3 { margin: 0 0 6px; }
+.share textarea { margin: 10px 0; font-size: 14px; }
+
+/* Quiz */
+.quiz-msg { margin: 12px 0 16px; padding: 14px 16px; background: var(--bg); border-left: 3px solid var(--brand); border-radius: 0 6px 6px 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 17px; line-height: 1.55; }
+.quiz-choices { gap: 12px; }
+.quiz-choices .btn { min-width: 120px; }
+.quiz-reveal { margin-top: 18px; padding: 14px 16px; border-radius: 6px; border-left: 3px solid var(--line); background: var(--bg); }
+.quiz-reveal h3 { margin: 0 0 8px; }
+.quiz-ok { border-color: var(--ok); }
+.quiz-bad { border-color: var(--crit); }
+.quiz-result h2 { margin-top: 0; }

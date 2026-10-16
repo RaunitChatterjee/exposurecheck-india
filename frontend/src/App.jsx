@@ -13,6 +13,7 @@ import IncidentWizard from "./components/tools/IncidentWizard.jsx";
 import CallMode from "./components/tools/CallMode.jsx";
 import DomainChecker from "./components/tools/DomainChecker.jsx";
 import FamilyCard from "./components/tools/FamilyCard.jsx";
+import Quiz from "./components/tools/Quiz.jsx";
 
 const TABS = [
   { id: "home", label: "Home" },
@@ -24,6 +25,7 @@ const TABS = [
   { id: "upi", label: "UPI QR / link" },
   { id: "domain", label: "Real website?" },
   { id: "family", label: "Family card" },
+  { id: "quiz", label: "Scam quiz" },
   { id: "headers", label: "Email headers" },
 ];
 
@@ -89,6 +91,7 @@ export default function App() {
         {tab === "upi" && <UpiInspector />}
         {tab === "domain" && <DomainChecker />}
         {tab === "family" && <FamilyCard />}
+        {tab === "quiz" && <Quiz onOpen={setTab} />}
         {tab === "password" && <PasswordCheck />}
         {tab === "message" && <ScamChecker />}
         {tab === "headers" && <HeaderAnalyzer />}
