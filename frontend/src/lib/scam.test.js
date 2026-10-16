@@ -156,3 +156,22 @@ test("marking works for Devanagari text", () => {
   assert.equal(segs.map((s) => s.text).join(""), msg);
   assert.ok(segs.some((s) => s.marked));
 });
+
+test("real .bank.in links are not called look-alikes", () => {
+  for (const t of [
+    "Your HDFC Bank statement is ready: https://www.hdfc.bank.in/statement",
+    "Your ICICI Bank card ending 4821 was used. Details https://www.icici.bank.in/alerts",
+    "SBI: view your account at https://www.sbi.bank.in",
+    "Axis Bank: view offers at https://www.axis.bank.in/cards",
+  ]) {
+    const r = analyzeMessage(t);
+    assert.ok(!r.signals.some((s) => s.id.startsWith("brand-")), t);
+  }
+  assert.ok(analyzeMessage("HDFC Bank KYC: https://hdfc.bank.in.verify-now.top/login").signals.some((s) => s.id.startsWith("brand-")));
+});
+
+test("'scan it and enter your PIN to receive money' is flagged", () => {
+  const r = analyzeMessage("Buyer: I'll pay 8000 for the sofa. I've sent you a QR code. Just scan it and enter your PIN to receive the money.");
+  assert.ok(r.signals.some((s) => s.id === "collect"));
+  assert.ok(r.score >= 40);
+});

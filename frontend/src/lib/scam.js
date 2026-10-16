@@ -1,3 +1,5 @@
+import { ORGS } from "./orgs.js";
+
 // Heuristic checker for scam messages (SMS / WhatsApp / email) with India-specific patterns.
 // It reports signals, not verdicts: no signals does not mean a message is safe.
 
@@ -6,10 +8,10 @@ const RISKY_TLDS = [".xyz", ".top", ".click", ".icu", ".vip", ".buzz", ".site", 
 
 // brand tokens seen in a hostname -> domains that genuinely belong to that brand
 const BRANDS = [
-  { name: "SBI", tokens: ["sbi", "onlinesbi"], official: ["sbi.co.in", "onlinesbi.sbi", "sbicard.com", "sbi.bank.in"] },
-  { name: "HDFC Bank", tokens: ["hdfc", "hdfcbank"], official: ["hdfcbank.com", "hdfc.com"] },
-  { name: "ICICI Bank", tokens: ["icici", "icicibank"], official: ["icicibank.com", "icici.com"] },
-  { name: "Axis Bank", tokens: ["axisbank"], official: ["axisbank.com"] },
+  { name: "SBI", tokens: ["sbi", "onlinesbi"], official: ["sbi.bank.in", "sbi.co.in", "onlinesbi.sbi", "sbicard.com"] },
+  { name: "HDFC Bank", tokens: ["hdfc", "hdfcbank"], official: ["hdfc.bank.in", "hdfcbank.com", "hdfc.com"] },
+  { name: "ICICI Bank", tokens: ["icici", "icicibank"], official: ["icici.bank.in", "icicibank.com", "icici.com"] },
+  { name: "Axis Bank", tokens: ["axisbank"], official: ["axis.bank.in", "axisbank.com"] },
   { name: "Paytm", tokens: ["paytm"], official: ["paytm.com", "paytmbank.com"] },
   { name: "PhonePe", tokens: ["phonepe"], official: ["phonepe.com"] },
   { name: "IRCTC", tokens: ["irctc"], official: ["irctc.co.in"] },
@@ -25,6 +27,10 @@ const BRANDS = [
   { name: "Income Tax Department", tokens: ["incometax", "incometaxindia"], official: ["incometax.gov.in", "incometaxindia.gov.in"] },
   { name: "NPCI", tokens: ["npci"], official: ["npci.org.in"] },
 ];
+
+// Official addresses from the shared list (src/lib/orgs.js), so a real .bank.in link is never called a look-alike.
+const LISTED_OFFICIAL = ORGS.flatMap((o) => [...o.official, ...(o.legacy || [])]);
+const isListedOfficial = (host) => LISTED_OFFICIAL.some((d) => host === d || host.endsWith(`.${d}`));
 
 const TEXT_RULES = [
   { id: "otp", weight: 45, label: "Asks you to share an OTP, PIN or CVV",
@@ -53,7 +59,7 @@ const TEXT_RULES = [
     re2: /\b(?:giraftar\w*|warrant)\b|\bpolice\b[^.\n]{0,40}\b(?:bol|se baat|officer)\w*|\bdrugs?\b[^.\n]{0,50}\b(?:parcel|mile|mila)\b|\bparcel\b[^.\n]{0,60}\bdrugs?\b|\bdigital arrest\b|गिरफ्तार|वारंट|सीबीआई|नारकोटिक्स|मनी लॉन्ड्रिंग|डिजिटल अरेस्ट/ },
   { id: "collect", weight: 40, label: "Asks you to approve a request or scan a QR to receive money",
     detail: "Receiving money never needs your PIN, approval or a QR scan. A 'collect request' takes money out of your account.",
-    re: /\b(collect request|approve (the |this )?(payment )?request|scan (this |the )?qr)\b/,
+    re: /\b(collect request|approve (the |this )?(payment )?request|scan (this |the )?qr)\b|\bscan (?:it|this|that|the (?:qr )?code|a qr(?: code)?)\b[^.\n]{0,60}\b(?:receive|pin|get (?:the )?(?:money|paid))\b|\b(?:enter|put|type) (?:your )?(?:upi )?pin\b[^.\n]{0,30}\b(?:receive|get)\b/,
     re2: /\b(?:request|collect)\b[^.\n]{0,30}\b(?:accept|approve|swikar|manjoor)\w*|\b(?:upi pin|pin)\b[^.\n]{0,30}\b(?:daal\w*|dal\w*|dalein)\b|\bqr\b[^.\n]{0,40}\bscan\b[^.\n]{0,60}\b(?:paise|refund|cashback|paisa)\b|रिक्वेस्ट[^.\n]{0,30}(?:स्वीकार|एक्सेप्ट|अप्रूव)|पिन\s+डाल|क्यूआर[^.\n]{0,30}स्कैन/ },
   { id: "prize", weight: 20, label: "Prize, lottery or cashback offer",
     detail: "Unexpected winnings are bait for a 'processing fee' or your bank details.",
@@ -155,7 +161,7 @@ function urlSignals(u) {
 
   const tokens = host.split(/[.-]/);
   for (const b of BRANDS) {
-    if (tokens.some((t) => b.tokens.includes(t)) && !b.official.some((d) => host === d || host.endsWith(`.${d}`))) {
+    if (tokens.some((t) => b.tokens.includes(t)) && !isListedOfficial(host) && !b.official.some((d) => host === d || host.endsWith(`.${d}`))) {
       add(`brand-${b.name}`, 35, `Uses the name ${b.name} on a site that is not theirs`, `The real ${b.name} site is ${b.official[0]}. Type it yourself or use the official app.`);
       break;
     }
