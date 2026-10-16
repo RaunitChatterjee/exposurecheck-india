@@ -1,7 +1,7 @@
 // Official web addresses of organisations that scammers imitate most often in India.
 // Every entry was checked by loading the organisation's own website on CHECKED_ON, except where `check` says "known".
 // Banks: the RBI told banks to move to the exclusive ".bank.in" domain by 31 Oct 2025 (circular of 22 Apr 2025).
-// On CHECKED_ON, 15 of the 16 old bank addresses below redirected to the new ones; SBI's old address (sbi.co.in) still opened normally.
+// On CHECKED_ON, 15 of the 16 old bank addresses below redirected to the new ones; SBI's old address (sbi.co.in) still opened normally, while its old net banking address (onlinesbi.sbi) redirected.
 // This list is NOT complete. An address missing from it is "unknown", never "safe" or "fake".
 
 export const CHECKED_ON = "2026-10-15";
@@ -10,7 +10,7 @@ export const CHECKED_ON = "2026-10-15";
 const BANKS = [
   ["hdfc", "HDFC Bank", ["hdfc"], "hdfc.bank.in", ["hdfcbank.com"]],
   ["icici", "ICICI Bank", ["icici"], "icici.bank.in", ["icicibank.com"]],
-  ["sbi", "State Bank of India", ["sbi", "sbibank", "onlinesbi", "yono"], "sbi.bank.in", ["sbi.co.in"]],
+  ["sbi", "State Bank of India", ["sbi", "sbibank", "onlinesbi", "yono"], "sbi.bank.in", ["sbi.co.in", "onlinesbi.sbi"]],
   ["axis", "Axis Bank", ["axisbank", "axis"], "axis.bank.in", ["axisbank.com"]],
   ["pnb", "Punjab National Bank", ["pnb", "pnbindia"], "pnb.bank.in", ["pnbindia.in"]],
   ["bob", "Bank of Baroda", ["bankofbaroda", "bobcard", "bob"], "bankofbaroda.bank.in", ["bankofbaroda.in"]],
