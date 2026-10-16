@@ -16,7 +16,8 @@ A free, no-signup toolkit for people in India dealing with online fraud and data
 - **On a call now:** for when someone is pressuring you on the phone right now. Tick the signs on the call (secrecy, "stay on video", "safe account"), pick what they claim, and get the plain truth, an exact sentence to say in English, Hinglish or Hindi, what to do and not do, a message to send a family member, and an ordered urgent plan if you have already paid or shared something. Runs in your browser, nothing is stored.
 - **Is this the real website?:** paste a link, website name or email address. It compares it with a short list of official addresses (banks, government bodies, couriers, payment apps, telecoms) and flags look-alike spelling (`paytrn.com`), brand names on other domains, hidden `@` destinations, free hosting, odd endings and free-mail senders. Banks regulated by the RBI were told to move to `.bank.in` by 31 October 2025, and the checker uses that rule. Each entry in `frontend/src/lib/orgs.js` was checked against the organisation's own website on 15 October 2026 (two sites blocked automated checks and are marked `known`). The list is short and not a directory: an address that is not on it is shown as "not recognised", never as safe.
 - **Family safety card:** a printable one-page card in English, Hinglish or Hindi with five plain rules, the 1930 helpline and a family code word. Made in the browser and nothing is stored. The Hindi and Hinglish wording was written by the maintainer and has not been reviewed by a native editor.
-- **Scam message check:** rule-based detection of common Indian scam patterns in English, Hinglish and Hindi (Devanagari): KYC threats, fake courier and utility notices, OTP requests, "digital arrest" calls, prize and job scams, look-alike bank links. Genuine "do not share your OTP" warnings are not flagged. You can also drop a screenshot: the text is read in your browser (OCR, English and Hindi) using software served from this site, so the image is never uploaded and no third-party service is contacted. OCR can misread blurry screenshots, so the text is shown for you to correct.
+- **Would you fall for this?:** a three-minute quiz of ten invented messages and calls, some scams and some genuine, with the giveaway explained after each answer and a shareable score. Nothing is saved.
+- **Scam message check:** rule-based detection of common Indian scam patterns in English, Hinglish and Hindi (Devanagari): KYC threats, fake courier and utility notices, OTP requests, "digital arrest" calls, prize and job scams, look-alike bank links. Genuine "do not share your OTP" warnings are not flagged. You can also drop a screenshot: the text is read in your browser (OCR, English and Hindi) using software served from this site, so the image is never uploaded and no third-party service is contacted. OCR can misread blurry screenshots, so the text is shown for you to correct. After a warning result (message, website or UPI), a "Warn someone" panel makes a short text, WhatsApp link or image in English, Hinglish or Hindi that lists the warning signs only: the message itself is never included, and a website address is shown with `[.]` so chat apps do not make it tappable. A reassuring result is never offered for sharing.
 - **Email header analysis:** paste raw headers to read SPF, DKIM and DMARC results, compare sender fields, and trace the message path.
 - **Password check:** checks a password against the Pwned Passwords range API using k-anonymity (only the first 5 characters of the SHA-1 hash leave your browser).
 - **Email breaches:** looks up an email in a breach database, adds India-specific guidance, a transparent 0-100 risk score, remediation steps and a MITRE ATT&CK mapping. Optionally checks a domain you own via certificate-transparency logs (crt.sh) and DNS (SPF, DMARC, DKIM on common selectors).
@@ -60,6 +61,26 @@ Read this honestly:
 - It gives warning signs, never a verdict that something is safe.
 
 Run it yourself: `cd frontend && npm run benchmark`. Data is in `frontend/test-data/`. If the checker gets something wrong, use the "This result looks wrong? Report it" button in the app or see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## How well does the website checker work?
+
+Short answer: it is good at catching look-alikes that copy a known organisation's name, weak at fakes that name nobody, and it sometimes gives a softer warning to real sister companies. The numbers below come from addresses I invented, so treat them as a rough guide.
+
+The checker compares an address with a short list of official addresses (`frontend/src/lib/orgs.js`) and looks for common tricks. It was tested on two labelled sets of addresses written by the maintainer. "Flagged" means the checker said "Suspicious", "Not the official address" or "Be careful".
+
+| Set | Official addresses recognised | Fake addresses flagged | Fakes rated "Suspicious" | Real sites not on the list: called "Suspicious" / given a softer warning |
+|---|---|---|---|---|
+| Development set (built and tuned against it) | 7/7 | 16/16 | 14/16 | 0/6 / 0/6 |
+| **Held-out set, first run** (written after the logic and list were frozen) | 20/20 | 55/56 (98%) | 39/56 (70%) | 0/24 / 7/24 (29%) |
+| **Held-out set, final** (15 more fakes added after seeing the first run) | 20/20 | 66/71 (93%) | 39/71 (55%) | 0/24 / 7/24 (29%) |
+
+Read this honestly:
+- I added 15 fakes after the first run because I noticed the set only had fakes that name an organisation or use hyphens. The checker's logic was not changed. Those extra fakes are the weak spot: 10 fakes with no organisation name were flagged only as "Be careful", because they use several hyphens, a cheap ending such as .xyz or .top, or the word "bank"; and 5 with plain names and no hyphens were mostly missed (1 of 5). A fake like `securelogin8472.com` is shown as "not recognised".
+- Real sister companies of listed organisations (HDFC Securities, ICICI Direct, HDFC Life, Paytm Money, Amazon Jobs, BOB Card) get "Not the official address", and `mygov.in`, a real government portal, gets "Be careful" because its name contains "gov". The result text says it could be a separate company, but these are false alarms to be aware of. No real site was ever called "Suspicious".
+- The same person wrote the checker and the test addresses, so real-world attacks will differ. The addresses are invented or generic; none is a real scam site.
+- The list is short (38 organisations) and an address that is not on it is never called safe.
+
+Run it yourself: `cd frontend && npm run benchmark:domains`. Data is in `frontend/test-data/domains-dev.json` and `domains-heldout.json`.
 
 ## Architecture
 
