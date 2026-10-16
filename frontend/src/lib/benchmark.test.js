@@ -35,3 +35,37 @@ test("regression floor: held-out set", () => {
 test("toMarkdown mentions totals", () => {
   assert.match(toMarkdown(evaluate(held, analyzeMessage)), /\/18/);
 });
+
+// ---------- website checker ----------
+import { analyzeDomain } from "./domains.js";
+import { evaluateDomains, domainsToMarkdown } from "./benchmark.js";
+
+const domDev = load("domains-dev.json");
+const domHeld = load("domains-heldout.json");
+
+test("website datasets are well formed and ids are unique", () => {
+  const all = [...domDev, ...domHeld];
+  assert.equal(new Set(all.map((d) => d.id)).size, all.length);
+  for (const d of all) {
+    assert.ok(["official", "fake", "legit-other"].includes(d.label), d.id);
+    assert.ok(d.input && d.category && d.source, d.id);
+  }
+  assert.ok(domDev.every((d) => d.set === "dev") && domHeld.every((d) => d.set === "heldout"));
+  assert.ok(domHeld.filter((d) => d.label === "fake").length >= 50);
+});
+
+// Regression floors: these catch a change that makes the checker worse. They are not accuracy claims.
+test("regression floor: website checker, development set", () => {
+  const r = evaluateDomains(domDev, analyzeDomain);
+  assert.equal(r.officialRecognised, r.counts.official);
+  assert.equal(r.fakeFlagged, r.counts.fake);
+  assert.equal(r.otherHard.length, 0);
+});
+
+test("regression floor: website checker, held-out set", () => {
+  const r = evaluateDomains(domHeld, analyzeDomain);
+  assert.ok(r.officialRecognised / r.counts.official >= 0.95, "official recall");
+  assert.ok(r.fakeFlagged / r.counts.fake >= 0.85, "fake flagged");
+  assert.equal(r.otherHard.length, 0, "real sites must never be called suspicious");
+  assert.match(domainsToMarkdown(r), /Held|Official addresses recognised/);
+});

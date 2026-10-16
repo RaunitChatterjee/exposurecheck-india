@@ -48,3 +48,49 @@ export function toMarkdown(res) {
   }
   return out.join("\n");
 }
+
+// ---------- website checker ----------
+// Labels: "official" (an address that belongs to a listed organisation), "fake" (a look-alike or other imitation),
+// "legit-other" (a real site that is not on the list). A result is "flagged" when the checker says
+// suspicious, "not the official address" or caution; "hard" means suspicious.
+const FLAGGED = new Set(["suspicious", "mismatch", "caution"]);
+
+export function evaluateDomains(dataset, analyze) {
+  const rows = dataset.map((d) => ({ ...d, result: analyze(d.input) }));
+  const verdict = (r) => (r.result.ok ? r.result.verdict.id : "error");
+  const of = (label) => rows.filter((r) => r.label === label);
+  const official = of("official"), fake = of("fake"), other = of("legit-other");
+  const officialMissed = official.filter((r) => verdict(r) !== "official");
+  const fakeMissed = fake.filter((r) => !FLAGGED.has(verdict(r)));
+  const fakeHard = fake.filter((r) => verdict(r) === "suspicious");
+  const otherHard = other.filter((r) => verdict(r) === "suspicious");
+  const otherSoft = other.filter((r) => ["mismatch", "caution"].includes(verdict(r)));
+  const byCat = {};
+  for (const r of fake) {
+    const c = (byCat[r.category] ||= { total: 0, flagged: 0 });
+    c.total += 1; if (FLAGGED.has(verdict(r))) c.flagged += 1;
+  }
+  const label = (r) => `${r.input} -> ${verdict(r)}`;
+  return {
+    counts: { official: official.length, fake: fake.length, other: other.length },
+    officialRecognised: official.length - officialMissed.length, officialMissed: officialMissed.map(label),
+    fakeFlagged: fake.length - fakeMissed.length, fakeHard: fakeHard.length, fakeMissed: fakeMissed.map(label),
+    otherHard: otherHard.map(label), otherSoft: otherSoft.map(label), byCat,
+  };
+}
+
+export function domainsToMarkdown(res) {
+  const pct = (a, b) => `${a}/${b} (${b ? Math.round((a / b) * 100) : 0}%)`;
+  const out = [];
+  out.push(`Official addresses recognised as official: **${pct(res.officialRecognised, res.counts.official)}**`);
+  out.push(`Fake addresses flagged (suspicious, not the official address, or caution): **${pct(res.fakeFlagged, res.counts.fake)}**, of which rated "suspicious": ${pct(res.fakeHard, res.counts.fake)}`);
+  out.push(`Real sites not on the list called "suspicious": **${pct(res.otherHard.length, res.counts.other)}**; given a softer warning ("not the official address" or caution): **${pct(res.otherSoft.length, res.counts.other)}**`);
+  out.push("", "| Fake type | Flagged |", "|---|---|");
+  for (const [k, v] of Object.entries(res.byCat)) out.push(`| ${k} | ${v.flagged}/${v.total} |`);
+  const list = (title, arr) => { if (arr.length) { out.push("", `${title}:`); for (const a of arr) out.push(`- ${a}`); } };
+  list("Official addresses not recognised", res.officialMissed);
+  list("Fake addresses not flagged", res.fakeMissed);
+  list("Real sites called suspicious", res.otherHard);
+  list("Real sites given a softer warning", res.otherSoft);
+  return out.join("\n");
+}

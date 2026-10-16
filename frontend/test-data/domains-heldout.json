@@ -1,0 +1,937 @@
+[
+ {
+  "id": "h01",
+  "set": "heldout",
+  "input": "https://www.icici.bank.in/personal-banking",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h02",
+  "set": "heldout",
+  "input": "PNB.BANK.IN",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h03",
+  "set": "heldout",
+  "input": "https://www.kotak.bank.in/en/home.html",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h04",
+  "set": "heldout",
+  "input": "www.incometax.gov.in",
+  "label": "official",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h05",
+  "set": "heldout",
+  "input": "https://myaadhaar.uidai.gov.in",
+  "label": "official",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h06",
+  "set": "heldout",
+  "input": "https://www.flipkart.com/account/login",
+  "label": "official",
+  "category": "shop",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h07",
+  "set": "heldout",
+  "input": "airtel.in",
+  "label": "official",
+  "category": "telecom",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h08",
+  "set": "heldout",
+  "input": "www.delhivery.com/track",
+  "label": "official",
+  "category": "courier",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h09",
+  "set": "heldout",
+  "input": "sbi.co.in",
+  "label": "official",
+  "category": "bank (old address)",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h10",
+  "set": "heldout",
+  "input": "https://onlinesbi.sbi",
+  "label": "official",
+  "category": "bank (old address)",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h11",
+  "set": "heldout",
+  "input": "https://www.bankofbaroda.bank.in",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h12",
+  "set": "heldout",
+  "input": "bluedart.com",
+  "label": "official",
+  "category": "courier",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h13",
+  "set": "heldout",
+  "input": "https://www.paytm.com",
+  "label": "official",
+  "category": "payment",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h14",
+  "set": "heldout",
+  "input": "https://rbi.org.in",
+  "label": "official",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h15",
+  "set": "heldout",
+  "input": "https://www.indiapost.gov.in",
+  "label": "official",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h16",
+  "set": "heldout",
+  "input": "hdfcbank.com",
+  "label": "official",
+  "category": "bank (old address)",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h17",
+  "set": "heldout",
+  "input": "https://www.dtdc.in",
+  "label": "official",
+  "category": "courier",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h18",
+  "set": "heldout",
+  "input": "https://www.canarabank.bank.in",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h19",
+  "set": "heldout",
+  "input": "npci.org.in",
+  "label": "official",
+  "category": "payment",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h20",
+  "set": "heldout",
+  "input": "https://www.axis.bank.in/cards",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h21",
+  "set": "heldout",
+  "input": "hdfc-netbanking-login.com",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h22",
+  "set": "heldout",
+  "input": "sbi-yono-rewards.in",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h23",
+  "set": "heldout",
+  "input": "icici-card-offers.top",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h24",
+  "set": "heldout",
+  "input": "axisbank-kyc-update.co.in",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h25",
+  "set": "heldout",
+  "input": "kotakbank-secure.online",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h26",
+  "set": "heldout",
+  "input": "pnb-account-verify.xyz",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h27",
+  "set": "heldout",
+  "input": "bankofbaroda-help.info",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h28",
+  "set": "heldout",
+  "input": "hdfcbank.com.verify-account.in",
+  "label": "fake",
+  "category": "trick: brand in front",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h29",
+  "set": "heldout",
+  "input": "sbi.co.in-kyc.top",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h30",
+  "set": "heldout",
+  "input": "onlinesbi-login.net",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h31",
+  "set": "heldout",
+  "input": "yesbank-support.cc",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h32",
+  "set": "heldout",
+  "input": "rblcard-offers.com",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h33",
+  "set": "heldout",
+  "input": "canara-bank-kyc.in",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h34",
+  "set": "heldout",
+  "input": "unionbank-update.xyz",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h35",
+  "set": "heldout",
+  "input": "idfcfirstbank-care.in",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h36",
+  "set": "heldout",
+  "input": "indusind-netbanking.top",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h37",
+  "set": "heldout",
+  "input": "incometax-refund-status.com",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h38",
+  "set": "heldout",
+  "input": "uidai-aadhaar-update.in",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h39",
+  "set": "heldout",
+  "input": "aadhaar-card-download.co.in",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h40",
+  "set": "heldout",
+  "input": "epfo-claim-portal.in",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h41",
+  "set": "heldout",
+  "input": "parivahan-challan-pay.xyz",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h42",
+  "set": "heldout",
+  "input": "echallan-fine.top",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h43",
+  "set": "heldout",
+  "input": "pm-kisan-yojana-registration.com",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h44",
+  "set": "heldout",
+  "input": "indiapost-redelivery.com",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h45",
+  "set": "heldout",
+  "input": "sancharsaathi-verify.in",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h46",
+  "set": "heldout",
+  "input": "gst-refund-claim.in",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h47",
+  "set": "heldout",
+  "input": "sebi-investor-alert.in",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h48",
+  "set": "heldout",
+  "input": "delhivery-parcel.in",
+  "label": "fake",
+  "category": "courier look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h49",
+  "set": "heldout",
+  "input": "bluedart-customs.top",
+  "label": "fake",
+  "category": "courier look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h50",
+  "set": "heldout",
+  "input": "dtdc-track.cc",
+  "label": "fake",
+  "category": "courier look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h51",
+  "set": "heldout",
+  "input": "fedex-india-delivery.com",
+  "label": "fake",
+  "category": "courier look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h52",
+  "set": "heldout",
+  "input": "dhl-customs-fee.in",
+  "label": "fake",
+  "category": "courier look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h53",
+  "set": "heldout",
+  "input": "amazon-gift-claim.in",
+  "label": "fake",
+  "category": "shop look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h54",
+  "set": "heldout",
+  "input": "amazonn.in",
+  "label": "fake",
+  "category": "look-alike spelling",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h55",
+  "set": "heldout",
+  "input": "flipkartt.com",
+  "label": "fake",
+  "category": "look-alike spelling",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h56",
+  "set": "heldout",
+  "input": "flipkart-lucky-draw.top",
+  "label": "fake",
+  "category": "shop look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h57",
+  "set": "heldout",
+  "input": "paytm-kyc.xyz",
+  "label": "fake",
+  "category": "payment look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h58",
+  "set": "heldout",
+  "input": "phonepe-reward.in",
+  "label": "fake",
+  "category": "payment look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h59",
+  "set": "heldout",
+  "input": "jio-recharge-offer.top",
+  "label": "fake",
+  "category": "telecom look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h60",
+  "set": "heldout",
+  "input": "airtel-kyc-update.in",
+  "label": "fake",
+  "category": "telecom look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h61",
+  "set": "heldout",
+  "input": "bsnl-sim-block.in",
+  "label": "fake",
+  "category": "telecom look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h62",
+  "set": "heldout",
+  "input": "tatasky-kyc.top",
+  "label": "fake",
+  "category": "telecom look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h63",
+  "set": "heldout",
+  "input": "https://www.hdfc.bank.in@secure-login.xyz",
+  "label": "fake",
+  "category": "trick: hidden destination",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h64",
+  "set": "heldout",
+  "input": "sbi-update.netlify.app",
+  "label": "fake",
+  "category": "trick: free hosting",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h65",
+  "set": "heldout",
+  "input": "gpay-cashback.vercel.app",
+  "label": "fake",
+  "category": "trick: free hosting",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h66",
+  "set": "heldout",
+  "input": "bit.ly/3xKQ9",
+  "label": "fake",
+  "category": "trick: shortened link",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h67",
+  "set": "heldout",
+  "input": "203.0.113.7/login",
+  "label": "fake",
+  "category": "trick: raw IP",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h68",
+  "set": "heldout",
+  "input": "xn--paytm-9ua.in",
+  "label": "fake",
+  "category": "trick: punycode",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h69",
+  "set": "heldout",
+  "input": "care.sbi.alert@gmail.com",
+  "label": "fake",
+  "category": "free mailbox",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h70",
+  "set": "heldout",
+  "input": "kyc.team.axis@yahoo.in",
+  "label": "fake",
+  "category": "free mailbox",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h71",
+  "set": "heldout",
+  "input": "refunds@amazon-pay-support.in",
+  "label": "fake",
+  "category": "email look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h72",
+  "set": "heldout",
+  "input": "support@hdfc-secure.xyz",
+  "label": "fake",
+  "category": "email look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h73",
+  "set": "heldout",
+  "input": "netflix-billing-update.com",
+  "label": "fake",
+  "category": "unlisted brand",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h74",
+  "set": "heldout",
+  "input": "lic-policy-renewal.in",
+  "label": "fake",
+  "category": "unlisted brand",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h75",
+  "set": "heldout",
+  "input": "zerodha-kyc.xyz",
+  "label": "fake",
+  "category": "unlisted brand",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h76",
+  "set": "heldout",
+  "input": "hotstar-free-subscription.top",
+  "label": "fake",
+  "category": "unlisted brand",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h77",
+  "set": "heldout",
+  "input": "wikipedia.org",
+  "label": "legit-other",
+  "category": "unrelated",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h78",
+  "set": "heldout",
+  "input": "github.com",
+  "label": "legit-other",
+  "category": "unrelated",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h79",
+  "set": "heldout",
+  "input": "ndtv.com",
+  "label": "legit-other",
+  "category": "news",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h80",
+  "set": "heldout",
+  "input": "thehindu.com",
+  "label": "legit-other",
+  "category": "news",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h81",
+  "set": "heldout",
+  "input": "zomato.com",
+  "label": "legit-other",
+  "category": "shop",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h82",
+  "set": "heldout",
+  "input": "swiggy.com",
+  "label": "legit-other",
+  "category": "shop",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h83",
+  "set": "heldout",
+  "input": "myntra.com",
+  "label": "legit-other",
+  "category": "shop",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h84",
+  "set": "heldout",
+  "input": "zerodha.com",
+  "label": "legit-other",
+  "category": "finance",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h85",
+  "set": "heldout",
+  "input": "groww.in",
+  "label": "legit-other",
+  "category": "finance",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h86",
+  "set": "heldout",
+  "input": "policybazaar.com",
+  "label": "legit-other",
+  "category": "finance",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h87",
+  "set": "heldout",
+  "input": "makemytrip.com",
+  "label": "legit-other",
+  "category": "travel",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h88",
+  "set": "heldout",
+  "input": "mygov.in",
+  "label": "legit-other",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h89",
+  "set": "heldout",
+  "input": "digilocker.gov.in",
+  "label": "legit-other",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h90",
+  "set": "heldout",
+  "input": "india.gov.in",
+  "label": "legit-other",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h91",
+  "set": "heldout",
+  "input": "pib.gov.in",
+  "label": "legit-other",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h92",
+  "set": "heldout",
+  "input": "eci.gov.in",
+  "label": "legit-other",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h93",
+  "set": "heldout",
+  "input": "nseindia.com",
+  "label": "legit-other",
+  "category": "finance",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h94",
+  "set": "heldout",
+  "input": "hdfcsec.com",
+  "label": "legit-other",
+  "category": "group company",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h95",
+  "set": "heldout",
+  "input": "icicidirect.com",
+  "label": "legit-other",
+  "category": "group company",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h96",
+  "set": "heldout",
+  "input": "sbicard.com",
+  "label": "legit-other",
+  "category": "group company",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h97",
+  "set": "heldout",
+  "input": "hdfclife.com",
+  "label": "legit-other",
+  "category": "group company",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h98",
+  "set": "heldout",
+  "input": "paytmmoney.com",
+  "label": "legit-other",
+  "category": "group company",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h99",
+  "set": "heldout",
+  "input": "amazon.jobs",
+  "label": "legit-other",
+  "category": "group company",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h100",
+  "set": "heldout",
+  "input": "bobcard.co.in",
+  "label": "legit-other",
+  "category": "group company",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "h101",
+  "set": "heldout",
+  "input": "secure-login-8472.com",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h102",
+  "set": "heldout",
+  "input": "kyc-verification-portal.in",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h103",
+  "set": "heldout",
+  "input": "account-update-now.xyz",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h104",
+  "set": "heldout",
+  "input": "customer-care-helpdesk.top",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h105",
+  "set": "heldout",
+  "input": "refund-status-check.online",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h106",
+  "set": "heldout",
+  "input": "claim-your-reward.in",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h107",
+  "set": "heldout",
+  "input": "update-your-details.co.in",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h108",
+  "set": "heldout",
+  "input": "netbanking-secure.in",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h109",
+  "set": "heldout",
+  "input": "bank-kyc-update.com",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h110",
+  "set": "heldout",
+  "input": "digital-parcel-clearance.top",
+  "label": "fake",
+  "category": "no brand name",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run, to cover fakes that name no organisation; checker logic unchanged"
+ },
+ {
+  "id": "h111",
+  "set": "heldout",
+  "input": "securelogin8472.com",
+  "label": "fake",
+  "category": "plain name, no hyphens",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run to test fakes with a plain name; checker logic unchanged"
+ },
+ {
+  "id": "h112",
+  "set": "heldout",
+  "input": "x7kpay.in",
+  "label": "fake",
+  "category": "plain name, no hyphens",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run to test fakes with a plain name; checker logic unchanged"
+ },
+ {
+  "id": "h113",
+  "set": "heldout",
+  "input": "verifyaccount.co.in",
+  "label": "fake",
+  "category": "plain name, no hyphens",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run to test fakes with a plain name; checker logic unchanged"
+ },
+ {
+  "id": "h114",
+  "set": "heldout",
+  "input": "quickrefund.in",
+  "label": "fake",
+  "category": "plain name, no hyphens",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run to test fakes with a plain name; checker logic unchanged"
+ },
+ {
+  "id": "h115",
+  "set": "heldout",
+  "input": "mybankhelp.com",
+  "label": "fake",
+  "category": "plain name, no hyphens",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites",
+  "note": "added after the first run to test fakes with a plain name; checker logic unchanged"
+ }
+]

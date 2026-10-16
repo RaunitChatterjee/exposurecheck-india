@@ -10,7 +10,8 @@
     "test": "node --test",
     "benchmark": "node scripts/benchmark.mjs",
     "predev": "node scripts/copy-ocr.mjs",
-    "prebuild": "node scripts/copy-ocr.mjs"
+    "prebuild": "node scripts/copy-ocr.mjs",
+    "benchmark:domains": "node scripts/benchmark-domains.mjs"
   },
   "dependencies": {
     "@tesseract.js-data/eng": "^1.0.0",

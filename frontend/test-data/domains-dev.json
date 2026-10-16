@@ -1,0 +1,234 @@
+[
+ {
+  "id": "d01",
+  "set": "dev",
+  "input": "https://www.hdfc.bank.in/login",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d02",
+  "set": "dev",
+  "input": "netbanking.hdfc.bank.in",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d03",
+  "set": "dev",
+  "input": "incometax.gov.in",
+  "label": "official",
+  "category": "government",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d04",
+  "set": "dev",
+  "input": "amazon.in",
+  "label": "official",
+  "category": "shop",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d05",
+  "set": "dev",
+  "input": "hdfcbank.com",
+  "label": "official",
+  "category": "bank (old address)",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d06",
+  "set": "dev",
+  "input": "https://www.sbi.bank.in",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d07",
+  "set": "dev",
+  "input": "kotak.bank.in",
+  "label": "official",
+  "category": "bank",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d08",
+  "set": "dev",
+  "input": "hdfc-kyc-update.xyz",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d09",
+  "set": "dev",
+  "input": "http://sbi.co.in.verify-now.top/login",
+  "label": "fake",
+  "category": "trick: brand in front",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d10",
+  "set": "dev",
+  "input": "paytrn.com",
+  "label": "fake",
+  "category": "look-alike spelling",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d11",
+  "set": "dev",
+  "input": "amaz0n-offers.in",
+  "label": "fake",
+  "category": "look-alike spelling",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d12",
+  "set": "dev",
+  "input": "amazan.in",
+  "label": "fake",
+  "category": "look-alike spelling",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d13",
+  "set": "dev",
+  "input": "https://sbi.co.in@evil.com",
+  "label": "fake",
+  "category": "trick: hidden destination",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d14",
+  "set": "dev",
+  "input": "http://192.168.4.5/login",
+  "label": "fake",
+  "category": "trick: raw IP",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d15",
+  "set": "dev",
+  "input": "xn--sbi-9ua.in",
+  "label": "fake",
+  "category": "trick: punycode",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d16",
+  "set": "dev",
+  "input": "support.hdfc@gmail.com",
+  "label": "fake",
+  "category": "free mailbox",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d17",
+  "set": "dev",
+  "input": "sbi-support.netlify.app",
+  "label": "fake",
+  "category": "trick: free hosting",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d18",
+  "set": "dev",
+  "input": "incometax-refund.in",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d19",
+  "set": "dev",
+  "input": "delhivery-track.top",
+  "label": "fake",
+  "category": "courier look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d20",
+  "set": "dev",
+  "input": "sbibank-login.com",
+  "label": "fake",
+  "category": "bank look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d21",
+  "set": "dev",
+  "input": "flipkart.co",
+  "label": "fake",
+  "category": "look-alike spelling",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d22",
+  "set": "dev",
+  "input": "trai.in",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d23",
+  "set": "dev",
+  "input": "indiapost-track.top",
+  "label": "fake",
+  "category": "government look-alike",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d24",
+  "set": "dev",
+  "input": "example.com",
+  "label": "legit-other",
+  "category": "unrelated",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d25",
+  "set": "dev",
+  "input": "taxisafe.com",
+  "label": "legit-other",
+  "category": "unrelated",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d26",
+  "set": "dev",
+  "input": "trainers.in",
+  "label": "legit-other",
+  "category": "unrelated",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d27",
+  "set": "dev",
+  "input": "kodak.com",
+  "label": "legit-other",
+  "category": "unrelated",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d28",
+  "set": "dev",
+  "input": "axes.in",
+  "label": "legit-other",
+  "category": "unrelated",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ },
+ {
+  "id": "d29",
+  "set": "dev",
+  "input": "wikipedia.org",
+  "label": "legit-other",
+  "category": "unrelated",
+  "source": "written by the maintainer; addresses are invented or generic and are not real scam sites"
+ }
+]
